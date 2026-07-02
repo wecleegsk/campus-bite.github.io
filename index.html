@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CAMPUS BITE</title>
     <style>
-        
         body {
             margin: 0;
             font-family: Arial, sans-serif;
@@ -13,7 +12,6 @@
             color: #fff;
         }
 
-       
         header {
             background-color: #111;
             padding: 15px 0;
@@ -38,7 +36,6 @@
             font-weight: bold;
         }
 
-        
         .background {
             background-color: #000;
             padding: 40px 20px;
@@ -54,19 +51,18 @@
             text-align: center;
         }
 
-        
+        /* Updated to center horizontal cards and control spacing */
         .menu-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
             width: 100%;
-            max-width: 800px;
+            max-width: 1100px; /* Increased to fit 4 items horizontally */
             justify-content: center;
             padding: 0 10px;
             box-sizing: border-box;
         }
 
-        
         .card {
             background-color: #4a3b2c; 
             border-radius: 8px;
@@ -99,6 +95,7 @@
             cursor: pointer;
             width: 100%;
             max-width: 150px;
+            margin-top: auto; /* Pushes button to bottom if text heights differ */
         }
         .card button a {
             color: aqua;
@@ -107,7 +104,6 @@
             display: block;
         }
 
-   
         .categories ul {
             display: flex;
             justify-content: center;
@@ -122,7 +118,6 @@
             text-decoration: none;
         }
 
-   
         footer {
             text-align: center;
             padding: 20px;
@@ -151,7 +146,7 @@
         <div class="menu-container">
             <div class="card">
                 <img src="images (6).jpeg" alt="Kota King">
-                <h6>KOTA KING : R35.00</h6>
+                <h6>KOTA KING: R35.00</h6>
                 <button><a href="https://wa.me/27790155149">Order</a></button>
             </div>
                
@@ -160,25 +155,19 @@
                 <h6>Medium size: R25.00</h6>
                 <button><a href="https://wa.me/27790155149">Order</a></button>
             </div>
-        </div>
         
-        
-         <div class="card">
+            <div class="card">
                 <img src="images (5).jpeg" alt="Fries Big size">
                 <h6>Fries (Big size): R30.00</h6>
                 <button><a href="https://wa.me/27790155149">Order</a></button>
             </div>
-        </div>
         
-         <div class="card">
+            <div class="card">
                 <img src="images (11).jpeg" alt="Medium size Fries with 2 Russians">
                 <h6>Medium size Fries with 2 Russians: R40.00</h6>
                 <button><a href="https://wa.me/27790155149">Order</a></button>
             </div>
         </div>
-        
-        
-        
     </main>
 
     <aside class="categories">
