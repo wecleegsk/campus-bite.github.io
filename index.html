@@ -88,21 +88,32 @@
             color: #fff;
         }
         .card button {
-            background-color: #234;
+            background-color: black;
             border: none;
             padding: 10px 20px;
-            border-radius: 4px;
+            border-radius: 54px;
             cursor: pointer;
             width: 100%;
             max-width: 150px;
             margin-top: auto; 
         }
-        .card button a {
-            color: aqua;
-            text-decoration: none;
-            font-weight: bold;
-            display: block;
-        }
+    .card button a {
+    color: #eee;           
+    background-color: #000;       
+    text-decoration: none;
+    font-weight: 600;              
+    display: inline-block;          
+    padding: 10px 20px;            
+    border-radius: 62px;             
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    transition: all 0.3s ease;    }
+
+
+.card button a:hover {
+    background-color: #002;  
+    transform: translateY(-2px);    
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
 
         .categories ul {
             display: flex;
@@ -110,7 +121,7 @@
             gap: 20px;
             list-style-type: none;
             padding: 15px;
-            background-color: #234;
+            background-color: #000;
             margin: 0;
         }
         .categories a {
@@ -125,6 +136,17 @@
             color: #888;
         }
     </style>
+    
+        <aside class="categories">
+        <ul class="sidebar-links">
+            <li><a href="index.html">KOTA</a></li>
+            <li><a href="drinks.html">DRINKS</a></li>
+            <li><a href="stationary.html">STATIONARY</a></li>
+        </ul>
+    </aside>
+    
+    
+    
 </head>
 <body>
 
@@ -170,13 +192,7 @@
         </div>
     </main>
 
-    <aside class="categories">
-        <ul class="sidebar-links">
-            <li><a href="#">Category 1</a></li>
-            <li><a href="#">Category 2</a></li>
-            <li><a href="#">Category 3</a></li>
-        </ul>
-    </aside>
+    
 
     <footer>
         <p>Campus Bite trademark ™</p>
