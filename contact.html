@@ -3,180 +3,352 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CAMPUS BITE</title>
+    <title>CAMPUS BITE | CONTACT</title>
+    <!-- Font Awesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
-        
-        
-        
-        
-        
-        
+        :root {
+            --bg-dark: #090b0e;
+            --panel-bg: #13171c;
+            --accent-gold: #ffb703;
+            --accent-gold-hover: #fb8500;
+            --text-white: #ffffff;
+            --text-muted: #64748b;
+            --glass-border: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #000;
-            color: #fff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-       
+        /* --- Premium Navigation --- */
         header {
-            background-color: #111;
-            padding: 15px 0;
-            text-align: center;
+            background-color: rgba(19, 23, 28, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--glass-border);
         }
+
+        .brand-block {
+            display: flex;
+            flex-direction: column;
+        }
+
         .logo {
-            color: #fff;
             font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-        nav ul {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            list-style-type: none; 
-            padding: 0; 
-            margin: 0;
-        }
-        nav a {
-            color: aqua;
-            text-decoration: none;
-            font-weight: bold;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text-white);
         }
 
-        
-        .background {
-            background-color: #000;
-            padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        h4 {
-            color: #d12f7a;
-            font-size: 1.8rem;
-            margin-top: 0;
-            margin-bottom: 30px;
-            text-align: center;
+        .logo span {
+            color: var(--accent-gold);
         }
 
-        
-        .menu-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            width: 100%;
-            max-width: 800px;
-            justify-content: center;
-            padding: 0 10px;
-            box-sizing: border-box;
+        .tagline {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 2px;
         }
 
-        
-        .card {
-            background-color: #4a3b2c; 
-            border-radius: 8px;
-            overflow: hidden;
+        .nav-links {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            box-sizing: border-box;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-        }
-        .card img {
-            width: 100%;
-            max-width: 240px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 4px;
-        }
-        .card h6 {
-            font-size: 1.1rem;
-            margin: 15px 0;
-            color: #fff;
-        }
-        .card button {
-            background-color: #234;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-            max-width: 150px;
-        }
-        .card button a {
-            color: aqua;
-            text-decoration: none;
-            font-weight: bold;
-            display: block;
-        }
-
-   
-        .categories ul {
-            display: flex;
-            justify-content: center;
             gap: 20px;
-            list-style-type: none;
-            padding: 15px;
-            background-color: #234;
-            margin: 0;
-        }
-        .categories a {
-            color: aqua;
-            text-decoration: none;
         }
 
-   
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-white);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        /* --- Layout Container --- */
+        .main-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 24px;
+            width: 100%;
+            flex-grow: 1;
+        }
+
+        .hero-titles {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .hero-titles h4 {
+            font-size: 0.9rem;
+            color: var(--accent-gold);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .hero-titles h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            background: linear-gradient(180deg, #ffffff 0%, #a1a8b5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- Split Layout Grid --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 30px;
+        }
+
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        /* --- Bento Info Card Architecture --- */
+        .info-card {
+            background-color: var(--panel-bg);
+            border-radius: 24px;
+            padding: 28px;
+            border: 1px solid var(--glass-border);
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .info-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 183, 3, 0.25);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .info-card.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .icon-wrapper {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 183, 3, 0.06);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 183, 3, 0.12);
+        }
+
+        .icon-wrapper i {
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+        }
+
+        .info-card h5 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+
+        .info-card p, .info-card a {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-white);
+            text-decoration: none;
+            word-break: break-word;
+        }
+
+        .info-card a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* --- Operating Hours Specific Layout --- */
+        .hours-card {
+            background-color: var(--panel-bg);
+            border-radius: 24px;
+            padding: 35px;
+            border: 1px solid var(--glass-border);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hours-card h3 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+            letter-spacing: -0.3px;
+        }
+
+        .hours-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            font-size: 0.95rem;
+        }
+
+        .hours-row:last-child {
+            border-bottom: none;
+        }
+
+        .hours-row .day {
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .hours-row .time {
+            color: var(--text-white);
+            font-weight: 600;
+        }
+
+        .hours-row .time.closed {
+            color: #ef4444; /* Standard deep clean warning red */
+        }
+
+        /* --- Footer --- */
         footer {
             text-align: center;
-            padding: 20px;
-            background-color: #111;
-            color: #888;
+            padding: 40px 24px;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 850px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 16px;
+                padding: 20px;
+            }
+            .hero-titles h2 {
+                font-size: 2.2rem;
+            }
         }
     </style>
-    
-    
-    
-        <div class="logo"><b></b></div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>    
-   
-    
-    
-    
-    
 </head>
 <body>
 
-   
+    <header>
+        <div class="brand-block">
+            <div class="logo">CAMPUS <span>BITE</span></div>
+            <div class="tagline">Satisfy Your Cravings</div>
+        </div>
+        
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html" class="active">Contact</a>
+        </nav>
+    </header>
     
-    <main class="background">
-        <h4> CAMPUS BITE</h4>
+    <main class="main-container">
+        <div class="hero-titles">
+            <h4>Get In Touch</h4>
+            <h2>Enquiries & Support</h2>
+        </div>
 
-<h5> ENQUIRES AND SUGGESTIONS</h5>
-<h5> VISIT US</h5>
-<h3> TUT Campus Cafeteria</h3>
-<h5>  EMAIL US</h5>
-<h3> :campusBite@gmail.com</h3>
-<br>
-<h3>CALL US </h3>
-+27 64 738 3756
-<br>
-<br>
-<h5> OPERATING HOURS</h5>
-<h6> Mon - Fri (08:00am-17:00pm)</h6>
-<h6> Sat - Sun (Closed)</h6>
+        <div class="contact-grid">
+            <!-- Left: Method Cards -->
+            <div class="contact-methods">
+                
+                <!-- Visit Card -->
+                <div class="info-card full-width">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div>
+                        <h5>Visit Us</h5>
+                        <p>TUT Campus Cafeteria</p>
+                    </div>
+                </div>
 
-        </main>
+                <!-- Email Card -->
+                <div class="info-card">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div>
+                        <h5>Email Us</h5>
+                        <a href="mailto:campusBite@gmail.com">campusBite@gmail.com</a>
+                    </div>
+                </div>
+
+                <!-- Call Card -->
+                <div class="info-card">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div>
+                        <h5>Call Us</h5>
+                        <a href="tel:+27647383756">+27 64 738 3756</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Right: Hours Panel -->
+            <div class="hours-card">
+                <h3>Operating Hours</h3>
+                
+                <div class="hours-row">
+                    <span class="day">Monday - Friday</span>
+                    <span class="time">08:00 am - 17:00 pm</span>
+                </div>
+                <div class="hours-row">
+                    <span class="day">Saturday - Sunday</span>
+                    <span class="time closed">Closed</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
     <footer>
-        <p>Campus Bite trademark </p>
+        <p>&copy; 2026 Campus Bite Trademark ™</p>
     </footer>
 
 </body>
