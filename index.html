@@ -3,230 +3,372 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CAMPUS BITE</title>
+    <title>CAMPUS BITE | KOTA MENU</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
+        :root {
+            --bg-dark: #090b0e;
+            --panel-bg: #13171c;
+            --accent-gold: #ffb703;
+            --accent-gold-hover: #fb8500;
+            --text-white: #ffffff;
+            --text-muted: #64748b;
+            --glass-border: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #000;
-            color: #fff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            line-height: 1.5;
+            overflow-x: hidden;
         }
 
+        /* --- Elegant Glassmorphic Navigation --- */
         header {
-            background-color: #111;
-            padding: 15px 0;
-            text-align: center;
-        }
-        .logo {
-            color: #fff;
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-        nav ul {
+            background-color: rgba(19, 23, 28, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 5%;
             display: flex;
-            justify-content: center;
-            gap: 30px;
-            list-style-type: none; 
-            padding: 0; 
-            margin: 0;
-        }
-        nav a {
-            color: aqua;
-            text-decoration: none;
-            font-weight: bold;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--glass-border);
         }
 
-        .background {
-            background-color: #000;
-            padding: 40px 20px;
+        .brand-block {
             display: flex;
             flex-direction: column;
-            align-items: center;
-        }
-        h4 {
-            color: #d12f7a;
-            font-size: 1.8rem;
-            margin-top: 0;
-            margin-bottom: 30px;
-            text-align: center;
         }
 
-        
-        .menu-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text-white);
+        }
+
+        .logo span {
+            color: var(--accent-gold);
+        }
+
+        .tagline {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 2px;
+        }
+
+        .nav-links {
+            display: flex;
             gap: 20px;
-            width: 100%;
-            max-width: 1100px; 
-            justify-content: center;
-            padding: 0 10px;
-            box-sizing: border-box;
         }
 
-        .card {
-            background-color: #4a3b2c; 
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
             border-radius: 8px;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-white);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        /* --- Menu Segment Controller --- */
+        .menu-toggle-container {
+            display: flex;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 4px;
+            border-radius: 99px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .category-btn {
+            color: var(--text-muted);
+            padding: 8px 24px;
+            border-radius: 99px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            transition: all 0.25s ease;
+        }
+
+        .category-btn.active {
+            background-color: var(--accent-gold);
+            color: var(--bg-dark);
+            box-shadow: 0 4px 12px rgba(255, 183, 3, 0.25);
+        }
+
+        /* --- Main Container --- */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        .hero-titles {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .hero-titles h4 {
+            font-size: 0.9rem;
+            color: var(--accent-gold);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .hero-titles h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            background: linear-gradient(180deg, #ffffff 0%, #a1a8b5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- Modern Bento-Style Grid --- */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 32px;
+        }
+
+        /* --- Premium Card Architecture --- */
+        .card {
+            background-color: var(--panel-bg);
+            border-radius: 24px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            box-sizing: border-box;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            border: 1px solid var(--glass-border);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
         }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255, 183, 3, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+        }
+
+        .image-frame {
+            position: relative;
+            width: 100%;
+            padding-top: 80%; 
+            background-color: rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
         .card img {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            max-width: 240px;
-            height: 200px;
+            height: 100%;
             object-fit: cover;
-            border-radius: 4px;
-        }
-        .card h6 {
-            font-size: 1.1rem;
-            margin: 15px 0;
-            color: #fff;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-
-button {
-        display:flex;
-        justify-content: space-evenly;
-        text-align: center;
-        padding:1px;
-        width:100px;
-        background-color:#244;
-color:blue}
-
-
-
-
-        
-
-        
-        .card button {
-            background-color: black;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 54px;
-            cursor: pointer;
-            width: 100%;
-            max-width: 150px;
-            margin-top: auto; 
+        .card:hover img {
+            transform: scale(1.08);
         }
-    .card button a {
-    color: #eee;           
-    background-color: #000;       
-    text-decoration: none;
-    font-weight: 600;              
-    display: inline-block;          
-    padding: 10px 20px;            
-    border-radius: 62px;             
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-    transition: all 0.3s ease;    }
 
+        /* Price Floating Badge */
+        .price-tag {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(9, 11, 14, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            color: var(--accent-gold);
+            font-weight: 800;
+            padding: 6px 16px;
+            border-radius: 99px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 183, 3, 0.25);
+            z-index: 2;
+        }
 
-.card button a:hover {
-    background-color: #002;  
-    transform: translateY(-2px);    
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-        .categories ul {
+        /* Content Context */
+        .card-details {
+            padding: 24px;
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            list-style-type: none;
-            padding: 15px;
-            background-color: #000;
-            margin: 0;
-        }
-        .categories a {
-            color: aqua;
-            text-decoration: none;
+            flex-direction: column;
+            flex-grow: 1;
         }
 
+        .card h6 {
+            font-size: 1.25rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            color: var(--text-white);
+            letter-spacing: -0.3px;
+        }
+
+        /* Minimalistic Action Trigger */
+        .whatsapp-btn {
+            margin-top: auto;
+            background-color: rgba(255, 255, 255, 0.04);
+            color: var(--text-white);
+            text-decoration: none;
+            text-align: center;
+            padding: 14px;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-btn i {
+            color: #25D366; /* Standout WhatsApp brand color */
+            font-size: 1.1rem;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: var(--accent-gold);
+            color: var(--bg-dark);
+            border-color: var(--accent-gold);
+            box-shadow: 0 8px 20px rgba(255, 183, 3, 0.2);
+        }
+
+        .whatsapp-btn:hover i {
+            color: var(--bg-dark);
+        }
+
+        /* --- Footer --- */
         footer {
             text-align: center;
-            padding: 20px;
-            background-color: #111;
-            color: #888;
+            padding: 40px 24px;
+            margin-top: 100px;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Responsive UI Adjustments */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 16px;
+                padding: 20px;
+            }
+            .hero-titles h2 {
+                font-size: 2.2rem;
+            }
         }
     </style>
-    
-        
-    
-    
 </head>
 <body>
 
     <header>
-        <div class="logo"><b>OUR VISION TO SATISFY YOUR CRAVINGS</b></div>
+        <div class="brand-block">
+            <div class="logo">CAMPUS <span>BITE</span></div>
+            <div class="tagline">Satisfy Your Cravings</div>
+        </div>
+        
         <nav class="nav-links">
-    <a href="index.html"><i class="fas fa-home"></i> Home</a>
-    <a href="about.html"><i class="fas fa-user"></i> About</a>
-    <a href="services.html"><i class="fas fa-concierge-bell"></i> Services</a>
-    <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
-</nav>
-    <br><br>
-
+            <a href="index.html" class="active">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+        </nav>
         
-
-<aside class="categories">
-        <ul class="sidebar-links">
-            <li><button><a href="index.html">KOTA</a></button></li>
-            <li><button><a href="drinks.html">DRINKS</a></button></li>
-            
-        </ul>
-    </aside>
-        
-        
-        
-        
-
-
-        
+        <div class="menu-toggle-container">
+            <a href="index.html" class="category-btn active">KOTA</a>
+            <a href="drinks.html" class="category-btn">DRINKS</a>
+        </div>
     </header>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    
-    <main class="background">
-        <h4>WELCOME TO CAMPUS BITE</h4>
+    <main class="main-container">
+        <div class="hero-titles">
+            <h4>Fresh & Hot</h4>
+            <h2>Our Menu Selection</h2>
+        </div>
 
-<h2>Our Menu</h2>
-
-        <div class="menu-container">
+        <div class="menu-grid">
             <div class="card">
-                <img src="images (6).jpeg" alt="Kota King">
-                <h6>KOTA KING: R35.00</h6>
-                <button><a href="https://wa.me/27790155149">Order</a></button>
+                <span class="price-tag">R35.00</span>
+                <div class="image-frame">
+                    <img src="images (6).jpeg" alt="Kota King">
+                </div>
+                <div class="card-details">
+                    <h6>Kota King</h6>
+                    <a href="https://wa.me/27790155149" class="whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                    </a>
+                </div>
             </div>
                
             <div class="card">
-                <img src="images (7).jpeg" alt="Medium size Kota">
-                <h6>Medium size: R25.00</h6>
-                <button><a href="https://wa.me/27790155149">Order</a></button>
+                <span class="price-tag">R25.00</span>
+                <div class="image-frame">
+                    <img src="images (7).jpeg" alt="Medium size Kota">
+                </div>
+                <div class="card-details">
+                    <h6>Medium Size Kota</h6>
+                    <a href="https://wa.me/27790155149" class="whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                    </a>
+                </div>
             </div>
         
             <div class="card">
-                <img src="images (5).jpeg" alt="Fries Big size">
-                <h6>Fries (Big size): R30.00</h6>
-                <button><a href="https://wa.me/27790155149">Order</a></button>
+                <span class="price-tag">R30.00</span>
+                <div class="image-frame">
+                    <img src="images (5).jpeg" alt="Fries Big size">
+                </div>
+                <div class="card-details">
+                    <h6>Fries (Big Size)</h6>
+                    <a href="https://wa.me/27790155149" class="whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                    </a>
+                </div>
             </div>
         
             <div class="card">
-                <img src="images (11).jpeg" alt="Medium size Fries with 2 Russians">
-                <h6>Medium size Fries with 2 Russians: R40.00</h6>
-                <button><a href="https://wa.me/27790155149">Order</a></button>
+                <span class="price-tag">R40.00</span>
+                <div class="image-frame">
+                    <img src="images (11).jpeg" alt="Medium size Fries with 2 Russians">
+                </div>
+                <div class="card-details">
+                    <h6>Medium Fries + 2 Russians</h6>
+                    <a href="https://wa.me/27790155149" class="whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                    </a>
+                </div>
             </div>
         </div>
     </main>
 
-    
-
     <footer>
-        <p>Campus Bite trademark ™</p>
+        <p>&copy; 2026 Campus Bite Trademark ™</p>
     </footer>
 
 </body>
