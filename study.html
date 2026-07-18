@@ -3,176 +3,370 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CAMPUS BITE</title>
+    <title>CAMPUS BITE | TUTORING</title>
+    <!-- Font Awesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
-        
+        :root {
+            --bg-dark: #090b0e;
+            --panel-bg: #13171c;
+            --accent-gold: #ffb703;
+            --accent-gold-hover: #fb8500;
+            --text-white: #ffffff;
+            --text-muted: #64748b;
+            --glass-border: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #000;
-            color: #fff;
-        }
-
-       
-        header {
-            background-color: #111;
-            padding: 15px 0;
-            text-align: center;
-        }
-        .logo {
-            color: #fff;
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-        nav ul {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            list-style-type: none; 
-            padding: 0; 
-            margin: 0;
-        }
-        nav a {
-            color: aqua;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        
-        .background {
-            background-color: #000;
-            padding: 40px 20px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            line-height: 1.5;
             display: flex;
             flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- Premium Navigation --- */
+        header {
+            background-color: rgba(19, 23, 28, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-        }
-        h4 {
-            color: #d12f7a;
-            font-size: 1.8rem;
-            margin-top: 0;
-            margin-bottom: 30px;
-            text-align: center;
+            border-bottom: 1px solid var(--glass-border);
         }
 
-        
-        .menu-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            width: 100%;
-            max-width: 800px;
-            justify-content: center;
-            padding: 0 10px;
-            box-sizing: border-box;
+        .brand-block {
+            display: flex;
+            flex-direction: column;
         }
 
-        
-        .card {
-            background-color: #4a3b2c; 
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text-white);
+        }
+
+        .logo span {
+            color: var(--accent-gold);
+        }
+
+        .tagline {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 8px 12px;
             border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-white);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        /* --- Main Layout --- */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 24px;
+            width: 100%;
+            flex-grow: 1;
+        }
+
+        .hero-titles {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .hero-titles h4 {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .hero-titles h4 span {
+            color: var(--accent-gold);
+        }
+
+        .hero-titles h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            background: linear-gradient(180deg, #ffffff 0%, #a1a8b5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- Academic Cards Grid --- */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            justify-content: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* --- Premium Card Architecture --- */
+        .card {
+            background-color: var(--panel-bg);
+            border-radius: 24px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            box-sizing: border-box;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            border: 1px solid var(--glass-border);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255, 183, 3, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .image-frame {
+            position: relative;
+            width: 100%;
+            padding-top: 65%; /* Academic landscape orientation spacing */
+            background-color: rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
         .card img {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            max-width: 240px;
-            height: 200px;
+            height: 100%;
             object-fit: cover;
-            border-radius: 4px;
-        }
-        .card h6 {
-            font-size: 1.1rem;
-            margin: 15px 0;
-            color: #fff;
-        }
-        .card button {
-            background-color: #234;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-            max-width: 150px;
-        }
-        .card button a {
-            color: aqua;
-            text-decoration: none;
-            font-weight: bold;
-            display: block;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-   
-        .categories ul {
+        .card:hover img {
+            transform: scale(1.06);
+        }
+
+        /* Card Content Layout */
+        .card-details {
+            padding: 28px;
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            list-style-type: none;
-            padding: 15px;
-            background-color: #234;
-            margin: 0;
-        }
-        .categories a {
-            color: aqua;
-            text-decoration: none;
+            flex-direction: column;
+            flex-grow: 1;
         }
 
-   
+        .card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 20px;
+            letter-spacing: -0.3px;
+        }
+
+        /* --- Structured Pricing Block --- */
+        .price-matrix {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 24px;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 14px 18px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.95rem;
+        }
+
+        .price-row .session-type {
+            color: var(--text-muted);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .price-row .session-type i {
+            font-size: 0.85rem;
+            color: var(--accent-gold);
+        }
+
+        .price-row .rate {
+            color: var(--text-white);
+            font-weight: 700;
+        }
+
+        /* --- Premium CTA Link --- */
+        .whatsapp-btn {
+            margin-top: auto;
+            background-color: rgba(255, 255, 255, 0.04);
+            color: var(--text-white);
+            text-decoration: none;
+            text-align: center;
+            padding: 14px;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-btn i {
+            color: #25D366;
+            font-size: 1.1rem;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: var(--accent-gold);
+            color: var(--bg-dark);
+            border-color: var(--accent-gold);
+            box-shadow: 0 8px 20px rgba(255, 183, 3, 0.2);
+        }
+
+        .whatsapp-btn:hover i {
+            color: var(--bg-dark);
+        }
+
+        /* --- Footer --- */
         footer {
             text-align: center;
-            padding: 20px;
-            background-color: #111;
-            color: #888;
+            padding: 40px 24px;
+            margin-top: 80px;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 16px;
+                padding: 20px;
+            }
+            .hero-titles h2 {
+                font-size: 2.2rem;
+            }
         }
     </style>
 </head>
 <body>
+
     <header>
-
-        <div class="logo"><b>TUTORING SESSIONS</b></div>
-     <br>
-     <br>
-   <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>    
-    </header>
-    
-    <main class="background">
-        <h4>BROUGHT TO YOU BY <br></h4> <h5>CAMPUS BITE & DIGITAL VERTEX</h5>
-
-        <div class="menu-container">
-            <div class="card">
-                <img src="maths.webp" alt="Mathematics">
-                <h6>one on one: R250.00</h6><br>
-                <h6> group classes: R100.00</h6>
-                <button><a href="https://wa.me/27 64 738 3756">Order</a></button>
-            </div>
-               
-            <div class="card">
-                <img src="cn1.jpeg" alt="Computer networks">
-                <h6>one on one: R250.00</h6><br>
-                <h6> group classes: R100.00</h6>
-                <button><a href="https://wa.me/27 64 738 3756">Order</a></button>
-            </div>
+        <div class="brand-block">
+            <div class="logo">CAMPUS <span>BITE</span></div>
+            <div class="tagline">Satisfy Your Cravings</div>
         </div>
         
-       
-        
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+    
+    <main class="main-container">
+        <div class="hero-titles">
+            <h4>Brought to you by <span>Campus Bite</span> & <span>Digital Vertex</span></h4>
+            <h2>Tutoring Sessions</h2>
+        </div>
+
+        <div class="menu-grid">
+            <!-- Card 1: Mathematics -->
+            <div class="card">
+                <div class="image-frame">
+                    <img src="maths.webp" alt="Mathematics">
+                </div>
+                <div class="card-details">
+                    <h3>Mathematics</h3>
+                    
+                    <div class="price-matrix">
+                        <div class="price-row">
+                            <span class="session-type"><i class="fas fa-user"></i> One-on-One</span>
+                            <span class="rate">R250.00</span>
+                        </div>
+                        <div class="price-row">
+                            <span class="session-type"><i class="fas fa-users"></i> Group Classes</span>
+                            <span class="rate">R100.00</span>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/27647383756" class="whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i> Book Session
+                    </a>
+                </div>
+            </div>
+               
+            <!-- Card 2: Computer Networks -->
+            <div class="card">
+                <div class="image-frame">
+                    <img src="cn1.jpeg" alt="Computer Networks">
+                </div>
+                <div class="card-details">
+                    <h3>Computer Networks</h3>
+                    
+                    <div class="price-matrix">
+                        <div class="price-row">
+                            <span class="session-type"><i class="fas fa-user"></i> One-on-One</span>
+                            <span class="rate">R250.00</span>
+                        </div>
+                        <div class="price-row">
+                            <span class="session-type"><i class="fas fa-users"></i> Group Classes</span>
+                            <span class="rate">R100.00</span>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/27647383756" class="whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i> Book Session
+                    </a>
+                </div>
+            </div>
+        </div>
     </main>
 
-
     <footer>
-        <p>Campus Bite trademark ™</p>
+        <p>&copy; 2026 Campus Bite Trademark ™</p>
     </footer>
 
 </body>
