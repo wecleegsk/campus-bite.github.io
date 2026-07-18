@@ -3,171 +3,348 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CAMPUS BITE</title>
+    <title>CAMPUS BITE | CALCULATORS</title>
+    <!-- Font Awesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
-        
+        :root {
+            --bg-dark: #090b0e;
+            --panel-bg: #13171c;
+            --accent-gold: #ffb703;
+            --accent-gold-hover: #fb8500;
+            --text-white: #ffffff;
+            --text-muted: #64748b;
+            --glass-border: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #000;
-            color: #fff;
-        }
-
-       
-        header {
-            background-color: #111;
-            padding: 15px 0;
-            text-align: center;
-        }
-        .logo {
-            color: #fff;
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-        nav ul {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            list-style-type: none; 
-            padding: 0; 
-            margin: 0;
-        }
-        nav a {
-            color: aqua;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        
-        .background {
-            background-color: #000;
-            padding: 40px 20px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            line-height: 1.5;
             display: flex;
             flex-direction: column;
-            align-items: center;
-        }
-        h4 {
-            color: #d12f7a;
-            font-size: 1.8rem;
-            margin-top: 0;
-            margin-bottom: 30px;
-            text-align: center;
+            min-height: 100vh;
         }
 
-        
-        .menu-container {
+        /* --- Premium Navigation --- */
+        header {
+            background-color: rgba(19, 23, 28, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .brand-block {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text-white);
+        }
+
+        .logo span {
+            color: var(--accent-gold);
+        }
+
+        .tagline {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-white);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        /* --- Main Layout --- */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 24px;
+            width: 100%;
+            flex-grow: 1;
+        }
+
+        .hero-titles {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .hero-titles h4 {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .hero-titles h4 span {
+            color: var(--accent-gold);
+        }
+
+        .hero-titles h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            background: linear-gradient(180deg, #ffffff 0%, #a1a8b5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- Menu Grid Configuration --- */
+        .menu-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            width: 100%;
-            max-width: 800px;
+            gap: 32px;
             justify-content: center;
-            padding: 0 10px;
-            box-sizing: border-box;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        
+        /* --- Premium Card Architecture --- */
         .card {
-            background-color: #4a3b2c; 
-            border-radius: 8px;
+            background-color: var(--panel-bg);
+            border-radius: 24px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            box-sizing: border-box;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-        }
-        .card img {
-            width: 100%;
-            max-width: 240px;
-            height: 200px;
-            object-fit: contain; /* FIXED: Shows the entire image without cropping */
-            border-radius: 4px;
-        }
-        .card h6 {
-            font-size: 1.1rem;
-            margin: 15px 0;
-            color: #fff;
-        }
-        .card button {
-            background-color: #234;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-            max-width: 150px;
-        }
-        .card button a {
-            color: aqua;
-            text-decoration: none;
-            font-weight: bold;
-            display: block;
+            border: 1px solid var(--glass-border);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-   
-        .categories ul {
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255, 183, 3, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .image-frame {
+            position: relative;
+            width: 100%;
+            padding-top: 80%; /* Box ratio optimal for hardware displays */
+            background-color: rgba(0, 0, 0, 0.15);
             display: flex;
+            align-items: center;
             justify-content: center;
-            gap: 20px;
-            list-style-type: none;
-            padding: 15px;
-            background-color: #234;
-            margin: 0;
-        }
-        .categories a {
-            color: aqua;
-            text-decoration: none;
         }
 
-   
+        .card img {
+            position: absolute;
+            top: 5%;
+            left: 5%;
+            width: 90%;
+            height: 90%;
+            object-fit: contain; /* FIXED: Respects original padding bounds without cropping edges */
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.04);
+        }
+
+        /* Card Details Layout */
+        .card-details {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .item-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .item-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-white);
+            letter-spacing: -0.3px;
+        }
+
+        .variant-tag {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-top: 2px;
+        }
+
+        .price-tag {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--accent-gold);
+        }
+
+        /* --- Premium CTA Link --- */
+        .whatsapp-btn {
+            margin-top: auto;
+            background-color: rgba(255, 255, 255, 0.03);
+            color: var(--text-white);
+            text-decoration: none;
+            text-align: center;
+            padding: 14px;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-btn i {
+            color: #25D366;
+            font-size: 1.1rem;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: var(--text-white);
+            color: var(--bg-dark);
+            border-color: var(--text-white);
+        }
+
+        .whatsapp-btn:hover i {
+            color: var(--bg-dark);
+        }
+
+        /* --- Footer --- */
         footer {
             text-align: center;
-            padding: 20px;
-            background-color: #111;
-            color: #888;
+            padding: 40px 24px;
+            margin-top: 80px;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 16px;
+                padding: 20px;
+            }
+            .hero-titles h2 {
+                font-size: 2.2rem;
+            }
         }
     </style>
 </head>
 <body>
+
     <header>
-
-        <div class="logo"><b>ADVANCED CALCULATORS </b></div>
-     <br>
-     <br>
-   <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>    
-    </header>
-    
-    <main class="background">
-        <h4>BROUGHT TO YOU BY <br> CAMPUS BITE</h4>
-
-        <div class="menu-container">
-            <div class="card">
-                <img src="calculator1.webp" alt="calculator model: FX 991ES  ">
-                <h6>Colour Black: R300.00</h6>
-                <button><a href="https://wa.me/27647383756">Order</a></button>
-            </div>
-               
-            <div class="card">
-                <img src="calculator2.webp" alt="calculator model: FX 991ES">
-                <h6>Colour White: R300.00</h6>
-                <button><a href="https://wa.me/27647383756">Order</a></button>
-            </div>
+        <div class="brand-block">
+            <div class="logo">CAMPUS <span>BITE</span></div>
+            <div class="tagline">Satisfy Your Cravings</div>
         </div>
         
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+    
+    <main class="main-container">
+        <div class="hero-titles">
+            <h4>Brought to you by <span>Campus Bite</span></h4>
+            <h2>Advanced Calculators</h2>
+        </div>
+
+        <div class="menu-grid">
+            <!-- Card 1: Black Variant -->
+            <div class="card">
+                <div class="image-frame">
+                    <img src="calculator1.webp" alt="Calculator FX-991ES Black Edition">
+                </div>
+                <div class="card-details">
+                    <div class="item-meta">
+                        <div class="item-info">
+                            <h3>FX-991ES Matrix</h3>
+                            <span class="variant-tag">Edition: Matte Black</span>
+                        </div>
+                        <span class="price-tag">R300.00</span>
+                    </div>
+
+                    <a href="https://wa.me/27647383756" class="whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i> Order Now
+                    </a>
+                </div>
+            </div>
+               
+            <!-- Card 2: White Variant -->
+            <div class="card">
+                <div class="image-frame">
+                    <img src="calculator2.webp" alt="Calculator FX-991ES White Edition">
+                </div>
+                <div class="card-details">
+                    <div class="item-meta">
+                        <div class="item-info">
+                            <h3>FX-991ES Matrix</h3>
+                            <span class="variant-tag">Edition: Pristine White</span>
+                        </div>
+                        <span class="price-tag">R300.00</span>
+                    </div>
+
+                    <a href="https://wa.me/27647383756" class="whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i> Order Now
+                    </a>
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer>
-        <p>Campus Bite trademark ™</p>
+        <p>&copy; 2026 Campus Bite Trademark ™</p>
     </footer>
 
 </body>
