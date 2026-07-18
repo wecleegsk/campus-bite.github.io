@@ -3,183 +3,350 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CAMPUS BITE</title>
+    <title>CAMPUS BITE | SERVICES</title>
+    <!-- Font Awesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
-        
-        
-        
-        
-        
-        
+        :root {
+            --bg-dark: #090b0e;
+            --panel-bg: #13171c;
+            --accent-gold: #ffb703;
+            --accent-gold-hover: #fb8500;
+            --text-white: #ffffff;
+            --text-muted: #64748b;
+            --glass-border: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #000;
-            color: #fff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-       
+        /* --- Premium Glassmorphic Navigation --- */
         header {
-            background-color: #111;
-            padding: 15px 0;
-            text-align: center;
+            background-color: rgba(19, 23, 28, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--glass-border);
         }
+
+        .brand-block {
+            display: flex;
+            flex-direction: column;
+        }
+
         .logo {
-            color: #fff;
             font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-        nav ul {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            list-style-type: none; 
-            padding: 0; 
-            margin: 0;
-        }
-        nav a {
-            color: aqua;
-            text-decoration: none;
-            font-weight: bold;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text-white);
         }
 
-        
-        .background {
-            background-color: #000;
-            padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        h4 {
-            color: #d12f7a;
-            font-size: 1.8rem;
-            margin-top: 0;
-            margin-bottom: 30px;
-            text-align: center;
+        .logo span {
+            color: var(--accent-gold);
         }
 
-        
-        .menu-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            width: 100%;
-            max-width: 800px;
-            justify-content: center;
-            padding: 0 10px;
-            box-sizing: border-box;
+        .tagline {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 2px;
         }
 
-        
-        .card {
-            background-color: #4a3b2c; 
-            border-radius: 8px;
-            overflow: hidden;
+        .nav-links {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            box-sizing: border-box;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-        }
-        .card img {
-            width: 100%;
-            max-width: 240px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 4px;
-        }
-        .card h6 {
-            font-size: 1.1rem;
-            margin: 15px 0;
-            color: #fff;
-        }
-        .card button {
-            background-color: #234;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-            max-width: 150px;
-        }
-        .card button a {
-            color: aqua;
-            text-decoration: none;
-            font-weight: bold;
-            display: block;
-        }
-
-   
-        .categories ul {
-            display: flex;
-            justify-content: center;
             gap: 20px;
-            list-style-type: none;
-            padding: 15px;
-            background-color: #234;
-            margin: 0;
-        }
-        .categories a {
-            color: aqua;
-            text-decoration: none;
         }
 
-   
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-white);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        /* --- Main Layout Container --- */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 24px;
+            width: 100%;
+            flex-grow: 1;
+        }
+
+        .hero-titles {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .hero-titles h4 {
+            font-size: 0.9rem;
+            color: var(--accent-gold);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .hero-titles h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            background: linear-gradient(180deg, #ffffff 0%, #a1a8b5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- Services Bento Grid --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        /* --- Service Card Architecture --- */
+        .service-card {
+            background-color: var(--panel-bg);
+            border-radius: 24px;
+            padding: 35px;
+            border: 1px solid var(--glass-border);
+            text-decoration: none;
+            color: var(--text-white);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255, 183, 3, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .icon-box {
+            width: 55px;
+            height: 55px;
+            background: rgba(255, 183, 3, 0.08);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 183, 3, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .icon-box i {
+            color: var(--accent-gold);
+            font-size: 1.4rem;
+        }
+
+        .service-card:hover .icon-box {
+            background: var(--accent-gold);
+            transform: scale(1.05);
+        }
+
+        .service-card:hover .icon-box i {
+            color: var(--bg-dark);
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        .service-card p {
+            color: #a1a8b5;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .arrow-link {
+            margin-top: auto;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: gap 0.2s ease;
+        }
+
+        .service-card:hover .arrow-link {
+            gap: 10px;
+            color: var(--accent-gold-hover);
+        }
+
+        /* --- Bottom Contact & Info Block --- */
+        .info-panel {
+            background: linear-gradient(135deg, rgba(255,255,255,0.01) 0%, rgba(255,255,255,0.03) 100%);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .info-panel h5 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .info-panel .email-link {
+            color: var(--text-white);
+            font-size: 1.6rem;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+            transition: color 0.3s ease;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .info-panel .email-link:hover {
+            color: var(--accent-gold);
+        }
+
+        .notice-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--accent-gold);
+            background: rgba(255, 183, 3, 0.05);
+            padding: 6px 16px;
+            border-radius: 99px;
+            border: 1px solid rgba(255, 183, 3, 0.1);
+        }
+
+        /* --- Footer --- */
         footer {
             text-align: center;
-            padding: 20px;
-            background-color: #111;
-            color: #888;
+            padding: 40px 24px;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 16px;
+                padding: 20px;
+            }
+            .hero-titles h2 {
+                font-size: 2.2rem;
+            }
+            .info-panel .email-link {
+                font-size: 1.25rem;
+            }
         }
     </style>
-    
-    
-    
-        <div class="logo"><b></b></div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>    
-   
-    
-    
-    
-    
 </head>
 <body>
 
-   
+    <header>
+        <div class="brand-block">
+            <div class="logo">CAMPUS <span>BITE</span></div>
+            <div class="tagline">Satisfy Your Cravings</div>
+        </div>
+        
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html" class="active">Services</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
     
-    <main class="background">
-        <h4> CAMPUS BITE</h4>
+    <main class="main-container">
+        <div class="hero-titles">
+            <h4>What We Offer</h4>
+            <h2>Student Services</h2>
+        </div>
 
-<h1> SERVICES</h1>
-<br>
-<br>
-<h1><a href="calculator.html">Buy a calculator</a></h1>
-<br>
-<h2><a href="fooddel.html"> Delivery </a></h2>
-<br>
-<br>
-<h2> <a href="study.html">Book a study session</a></h2>
-        <br>
-<h5> Suggestions or enquiries</h5>
-<h3> email :campusBite@gmail.com</h3>
-<br>
-<br>
-<br>
-<h5> more features to be added</h5>
+        <div class="services-grid">
+            <!-- Card 1: Calculator -->
+            <a href="calculator.html" class="service-card">
+                <div class="icon-box">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <h3>Buy a Calculator</h3>
+                <p>Get essential, university-approved scientific and computational calculators at student-friendly rates.</p>
+                <span class="arrow-link">Explore Store <i class="fas fa-arrow-right"></i></span>
+            </a>
+               
+            <!-- Card 2: Delivery -->
+            <a href="fooddel.html" class="service-card">
+                <div class="icon-box">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <h3>Fast Delivery</h3>
+                <p>Get hot, freshly prepared campus meals directly delivered straight to your residence or lecture hall.</p>
+                <span class="arrow-link">Order Food <i class="fas fa-arrow-right"></i></span>
+            </a>
+        
+            <!-- Card 3: Study Session -->
+            <a href="study.html" class="service-card">
+                <div class="icon-box">
+                    <i class="fas fa-book-reader"></i>
+                </div>
+                <h3>Book a Study Session</h3>
+                <p>Schedule dedicated one-on-one academic tutoring sessions with highly experienced campus tutors.</p>
+                <span class="arrow-link">Schedule Session <i class="fas fa-arrow-right"></i></span>
+            </a>
+        </div>
 
-        </main>
+        <!-- Suggestions & Enquiries Panel -->
+        <div class="info-panel">
+            <h5>Suggestions or Enquiries?</h5>
+            <a href="mailto:campusBite@gmail.com" class="email-link">campusBite@gmail.com</a>
+            <div>
+                <span class="notice-tag"><i class="fas fa-magic"></i> More innovative features coming soon</span>
+            </div>
+        </div>
+    </main>
+
     <footer>
-        <p>Campus Bite trademark </p>
+        <p>&copy; 2026 Campus Bite Trademark ™</p>
     </footer>
 
 </body>
