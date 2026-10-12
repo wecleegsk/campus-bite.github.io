@@ -573,47 +573,54 @@
 
     <!-- JavaScript Logic -->
     <script>
-    <!-- JavaScript Logic -->
+      <!-- JavaScript Logic -->
     <script>
+        // Load cart right away
         let cart = JSON.parse(localStorage.getItem('campusBiteCart')) || [];
 
-        document.addEventListener('DOMContentLoaded', () => {
-            updateCartUI();
-
-            // Attach listeners directly to avoid mobile onclick issues
-            document.querySelectorAll('.add-cart-btn').forEach(button => {
-                button.addEventListener('click', function() {
-                    const card = this.closest('.card');
-                    if (!card) return;
-                    
-                    const name = card.getAttribute('data-name');
-                    const price = parseFloat(card.getAttribute('data-price'));
-
-                    let existingItem = cart.find(item => item.name === name);
-                    if (existingItem) {
-                        existingItem.quantity += 1;
-                    } else {
-                        cart.push({ name, price, quantity: 1 });
-                    }
-
-                    saveAndRefresh();
-                    
-                    let originalText = this.innerHTML;
-                    this.innerHTML = '<i class="fas fa-check"></i> Added!';
-                    this.style.background = '#25D366';
-                    this.style.color = '#ffffff';
-                    setTimeout(() => {
-                        this.innerHTML = originalText;
-                        this.style.background = '';
-                        this.style.color = '';
-                    }, 1000);
-                });
-            });
-        });
+        // Run immediately when script loads
+        updateCartUI();
 
         function toggleCart() {
-            document.getElementById('cartDrawer').classList.toggle('open');
-            document.getElementById('cartOverlay').classList.toggle('open');
+            const drawer = document.getElementById('cartDrawer');
+            const overlay = document.getElementById('cartOverlay');
+            if (drawer && overlay) {
+                drawer.classList.toggle('open');
+                overlay.classList.toggle('open');
+            }
+        }
+
+        function addToCart(button) {
+            // Find the closest card
+            const card = button.closest('.card');
+            if (!card) {
+                alert("Error: Card element not found!");
+                return;
+            }
+            
+            const name = card.getAttribute('data-name');
+            const price = parseFloat(card.getAttribute('data-price'));
+
+            // Check if item exists
+            let existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+
+            saveAndRefresh();
+            
+            // Visual feedback
+            let originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-check"></i> Added!';
+            button.style.background = '#25D366';
+            button.style.color = '#ffffff';
+            setTimeout(() => {
+                button.innerHTML = originalText;
+                button.style.background = '';
+                button.style.color = '';
+            }, 1000);
         }
 
         function changeQuantity(name, amount) {
@@ -641,31 +648,33 @@
             let totalPrice = 0;
 
             if (cart.length === 0) {
-                cartBody.innerHTML = `<p style="text-align: center; color: var(--text-muted); margin-top: 40px;">Your cart is empty 🍔</p>`;
+                if (cartBody) cartBody.innerHTML = `<p style="text-align: center; color: var(--text-muted); margin-top: 40px;">Your cart is empty 🍔</p>`;
             } else {
-                cartBody.innerHTML = '';
+                if (cartBody) cartBody.innerHTML = '';
                 cart.forEach(item => {
                     totalItems += item.quantity;
                     totalPrice += item.price * item.quantity;
 
-                    cartBody.innerHTML += `
-                        <div class="cart-item">
-                            <div class="cart-item-info">
-                                <h4>${item.name}</h4>
-                                <small>R${item.price.toFixed(2)} each</small>
+                    if (cartBody) {
+                        cartBody.innerHTML += `
+                            <div class="cart-item">
+                                <div class="cart-item-info">
+                                    <h4>${item.name}</h4>
+                                    <small>R${item.price.toFixed(2)} each</small>
+                                </div>
+                                <div class="cart-item-controls">
+                                    <button type="button" onclick="changeQuantity('${item.name}', -1)">-</button>
+                                    <span>${item.quantity}</span>
+                                    <button type="button" onclick="changeQuantity('${item.name}', 1)">+</button>
+                                </div>
                             </div>
-                            <div class="cart-item-controls">
-                                <button onclick="changeQuantity('${item.name}', -1)">-</button>
-                                <span>${item.quantity}</span>
-                                <button onclick="changeQuantity('${item.name}', 1)">+</button>
-                            </div>
-                        </div>
-                    `;
+                        `;
+                    }
                 });
             }
 
-            cartCount.innerText = totalItems;
-            cartTotal.innerText = `R${totalPrice.toFixed(2)}`;
+            if (cartCount) cartCount.innerText = totalItems;
+            if (cartTotal) cartTotal.innerText = `R${totalPrice.toFixed(2)}`;
         }
 
         function checkoutWhatsApp() {
@@ -689,3 +698,6 @@
             window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
         }
     </script>
+</body>
+</html>
+
