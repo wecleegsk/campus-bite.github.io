@@ -571,7 +571,7 @@
         <p>&copy; 2026 Campus Bite Trademark ™</p>
     </footer>
 
-    <!-- Built-in JavaScript Logic -->
+    <!-- JavaScript Logic -->
     <script>
         let cart = JSON.parse(localStorage.getItem('campusBiteCart')) || [];
 
@@ -584,6 +584,8 @@
 
         function addToCart(button) {
             const card = button.closest('.card');
+            if (!card) return;
+            
             const name = card.getAttribute('data-name');
             const price = parseFloat(card.getAttribute('data-price'));
 
@@ -626,6 +628,4 @@
         function updateCartUI() {
             const cartCount = document.getElementById('cartCount');
             const cartBody = document.getElementById('cartBody');
-            const cartTotal = document.getElementById('cartTotal');
-
-            let total
+            const cartTotal = document.getElementById('
