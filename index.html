@@ -573,12 +573,12 @@
 
     <!-- JavaScript Logic -->
     <script>
-      <!-- JavaScript Logic -->
+      
+                <!-- JavaScript Logic -->
     <script>
-        // Load cart right away
         let cart = JSON.parse(localStorage.getItem('campusBiteCart')) || [];
 
-        // Run immediately when script loads
+        // Load cart UI on page load
         updateCartUI();
 
         function toggleCart() {
@@ -591,17 +591,13 @@
         }
 
         function addToCart(button) {
-            // Find the closest card
             const card = button.closest('.card');
-            if (!card) {
-                alert("Error: Card element not found!");
-                return;
-            }
+            if (!card) return;
             
             const name = card.getAttribute('data-name');
             const price = parseFloat(card.getAttribute('data-price'));
 
-            // Check if item exists
+            // 1. Add item to cart array
             let existingItem = cart.find(item => item.name === name);
             if (existingItem) {
                 existingItem.quantity += 1;
@@ -609,18 +605,16 @@
                 cart.push({ name, price, quantity: 1 });
             }
 
+            // 2. Save to local storage & update numbers
             saveAndRefresh();
             
-            // Visual feedback
-            let originalText = button.innerHTML;
-            button.innerHTML = '<i class="fas fa-check"></i> Added!';
-            button.style.background = '#25D366';
-            button.style.color = '#ffffff';
-            setTimeout(() => {
-                button.innerHTML = originalText;
-                button.style.background = '';
-                button.style.color = '';
-            }, 1000);
+            // 3. Automatically open the cart drawer so you see it!
+            const drawer = document.getElementById('cartDrawer');
+            const overlay = document.getElementById('cartOverlay');
+            if (drawer && overlay) {
+                drawer.classList.add('open');
+                overlay.classList.add('open');
+            }
         }
 
         function changeQuantity(name, amount) {
@@ -698,6 +692,7 @@
             window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
         }
     </script>
+
 </body>
 </html>
 
