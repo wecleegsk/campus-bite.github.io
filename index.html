@@ -32,7 +32,7 @@
             overflow-x: hidden;
         }
 
-        /* --- Elegant Glassmorphic Navigation --- */
+        /* --- Header --- */
         header {
             background-color: rgba(19, 23, 28, 0.8);
             backdrop-filter: blur(20px);
@@ -73,7 +73,7 @@
 
         .nav-links {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             align-items: center;
         }
 
@@ -92,7 +92,7 @@
             background: rgba(255, 255, 255, 0.03);
         }
 
-        /* --- Cart Nav Button Badge --- */
+        /* --- Cart Badge Button --- */
         .cart-nav-btn {
             background: rgba(255, 183, 3, 0.1);
             color: var(--accent-gold);
@@ -101,7 +101,7 @@
             border-radius: 20px;
             cursor: pointer;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -119,12 +119,8 @@
             border-radius: 50%;
             font-weight: 800;
         }
-        .cart-nav-btn:hover .cart-badge {
-            background: var(--bg-dark);
-            color: var(--accent-gold);
-        }
 
-        /* --- Menu Segment Controller --- */
+        /* --- Menu Toggle Segment --- */
         .menu-toggle-container {
             display: flex;
             background: rgba(255, 255, 255, 0.03);
@@ -149,7 +145,7 @@
             box-shadow: 0 4px 12px rgba(255, 183, 3, 0.25);
         }
 
-        /* --- Main Container --- */
+        /* --- Main Content --- */
         .main-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -179,14 +175,13 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* --- Modern Bento-Style Grid --- */
         .menu-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 32px;
         }
 
-        /* --- Premium Card Architecture --- */
+        /* --- Card Design --- */
         .card {
             background-color: var(--panel-bg);
             border-radius: 24px;
@@ -194,7 +189,7 @@
             display: flex;
             flex-direction: column;
             border: 1px solid var(--glass-border);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.4s ease;
             position: relative;
         }
 
@@ -219,14 +214,13 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.6s ease;
         }
 
         .card:hover img {
             transform: scale(1.08);
         }
 
-        /* Price Floating Badge */
         .price-tag {
             position: absolute;
             top: 16px;
@@ -243,7 +237,6 @@
             z-index: 2;
         }
 
-        /* Content Context */
         .card-details {
             padding: 24px;
             display: flex;
@@ -256,7 +249,6 @@
             margin-bottom: 20px;
             font-weight: 700;
             color: var(--text-white);
-            letter-spacing: -0.3px;
         }
 
         .card-actions {
@@ -266,12 +258,10 @@
             gap: 10px;
         }
 
-        /* Add to Cart Button Style */
         .add-cart-btn {
             background-color: var(--accent-gold);
             color: var(--bg-dark);
             border: none;
-            text-align: center;
             padding: 12px;
             border-radius: 14px;
             font-weight: 700;
@@ -285,10 +275,8 @@
         }
         .add-cart-btn:hover {
             background-color: var(--accent-gold-hover);
-            box-shadow: 0 6px 16px rgba(255, 183, 3, 0.25);
         }
 
-        /* Minimalistic Action Trigger */
         .whatsapp-btn {
             background-color: rgba(255, 255, 255, 0.04);
             color: var(--text-white);
@@ -305,18 +293,11 @@
             border: 1px solid var(--glass-border);
             transition: all 0.3s ease;
         }
-
         .whatsapp-btn i {
             color: #25D366;
-            font-size: 1rem;
         }
 
-        .whatsapp-btn:hover {
-            background-color: rgba(37, 211, 102, 0.1);
-            border-color: rgba(37, 211, 102, 0.3);
-        }
-
-        /* --- Slide-Out Cart Drawer Styles --- */
+        /* --- Drawer / Cart Modal --- */
         .cart-overlay {
             position: fixed;
             top: 0;
@@ -344,7 +325,7 @@
             z-index: 2000;
             display: flex;
             flex-direction: column;
-            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: right 0.4s ease;
         }
         .cart-drawer.open {
             right: 0;
@@ -357,21 +338,12 @@
             justify-content: space-between;
             align-items: center;
         }
-        .cart-header h3 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--text-white);
-        }
         .close-cart-btn {
             background: none;
             border: none;
             color: var(--text-muted);
             font-size: 24px;
             cursor: pointer;
-            transition: color 0.2s;
-        }
-        .close-cart-btn:hover {
-            color: var(--text-white);
         }
 
         .cart-body {
@@ -395,8 +367,8 @@
         }
         .cart-item-info small {
             color: var(--text-muted);
-            font-size: 0.8rem;
         }
+
         .cart-item-controls {
             display: flex;
             align-items: center;
@@ -412,14 +384,6 @@
             color: var(--text-white);
             cursor: pointer;
             font-weight: bold;
-            font-size: 0.9rem;
-        }
-        .cart-item-controls span {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--accent-gold);
-            min-width: 15px;
-            text-align: center;
         }
 
         .cart-footer {
@@ -435,6 +399,7 @@
             font-weight: 700;
             font-size: 1.1rem;
         }
+
         .whatsapp-checkout-btn {
             width: 100%;
             background: #25D366;
@@ -449,8 +414,218 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            transition: all 0.3s ease;
         }
-        .whatsapp-checkout-btn:hover {
-            background: #20ba5a;
-            box-shadow: 0 6px 20px rgba(37, 211, 1
+
+        footer {
+            text-align: center;
+            padding: 40px 24px;
+            margin-top: 100px;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 16px;
+                padding: 20px;
+            }
+            .hero-titles h2 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand-block">
+            <div class="logo">CAMPUS <span>BITE</span></div>
+            <div class="tagline">Satisfy Your Cravings</div>
+        </div>
+        
+        <nav class="nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+            
+            <button class="cart-nav-btn" onclick="toggleCart()">
+                <i class="fas fa-shopping-cart"></i> Cart <span id="cartCount" class="cart-badge">0</span>
+            </button>
+        </nav>
+        
+        <div class="menu-toggle-container">
+            <a href="index.html" class="category-btn active">KOTA</a>
+            <a href="drinks.html" class="category-btn">DRINKS</a>
+        </div>
+    </header>
+    
+    <main class="main-container">
+        <div class="hero-titles">
+            <h4>Fresh & Hot</h4>
+            <h2>Our Menu Selection</h2>
+        </div>
+
+        <div class="menu-grid">
+            <div class="card" data-name="Kota King" data-price="35.00">
+                <span class="price-tag">R35.00</span>
+                <div class="image-frame">
+                    <img src="images (6).jpeg" alt="Kota King">
+                </div>
+                <div class="card-details">
+                    <h6>Kota King</h6>
+                    <div class="card-actions">
+                        <button class="add-cart-btn" onclick="addToCart(this)">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                        <a href="https://wa.me/27790155149?text=Hi%20Campus%20Bite!%20I'd%20like%20to%20order%20a%20Kota%20King%20(R35.00)" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+               
+            <div class="card" data-name="Medium Size Kota" data-price="25.00">
+                <span class="price-tag">R25.00</span>
+                <div class="image-frame">
+                    <img src="images (7).jpeg" alt="Medium size Kota">
+                </div>
+                <div class="card-details">
+                    <h6>Medium Size Kota</h6>
+                    <div class="card-actions">
+                        <button class="add-cart-btn" onclick="addToCart(this)">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                        <a href="https://wa.me/27790155149?text=Hi%20Campus%20Bite!%20I'd%20like%20to%20order%20a%20Medium%20Size%20Kota%20(R25.00)" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="card" data-name="Fries (Big Size)" data-price="30.00">
+                <span class="price-tag">R30.00</span>
+                <div class="image-frame">
+                    <img src="images (5).jpeg" alt="Fries Big size">
+                </div>
+                <div class="card-details">
+                    <h6>Fries (Big Size)</h6>
+                    <div class="card-actions">
+                        <button class="add-cart-btn" onclick="addToCart(this)">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                        <a href="https://wa.me/27790155149?text=Hi%20Campus%20Bite!%20I'd%20like%20to%20order%20Fries%20Big%20Size%20(R30.00)" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="card" data-name="Medium Fries + 2 Russians" data-price="40.00">
+                <span class="price-tag">R40.00</span>
+                <div class="image-frame">
+                    <img src="images (11).jpeg" alt="Medium size Fries with 2 Russians">
+                </div>
+                <div class="card-details">
+                    <h6>Medium Fries + 2 Russians</h6>
+                    <div class="card-actions">
+                        <button class="add-cart-btn" onclick="addToCart(this)">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                        <a href="https://wa.me/27790155149?text=Hi%20Campus%20Bite!%20I'd%20like%20to%20order%20Medium%20Fries%20+%202%20Russians%20(R40.00)" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Cart Overlay & Drawer -->
+    <div id="cartOverlay" class="cart-overlay" onclick="toggleCart()"></div>
+
+    <div id="cartDrawer" class="cart-drawer">
+        <div class="cart-header">
+            <h3>Your Campus Cart</h3>
+            <button class="close-cart-btn" onclick="toggleCart()">&times;</button>
+        </div>
+        
+        <div id="cartBody" class="cart-body">
+            <p style="text-align: center; color: var(--text-muted); margin-top: 40px;">Your cart is empty 🍔</p>
+        </div>
+
+        <div class="cart-footer">
+            <div class="cart-total-row">
+                <span>Total:</span>
+                <span id="cartTotal" style="color: var(--accent-gold);">R0.00</span>
+            </div>
+            <button class="whatsapp-checkout-btn" onclick="checkoutWhatsApp()">
+                <i class="fab fa-whatsapp" style="font-size: 1.2rem;"></i> Checkout via WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Campus Bite Trademark ™</p>
+    </footer>
+
+    <!-- Built-in JavaScript Logic -->
+    <script>
+        let cart = JSON.parse(localStorage.getItem('campusBiteCart')) || [];
+
+        document.addEventListener('DOMContentLoaded', updateCartUI);
+
+        function toggleCart() {
+            document.getElementById('cartDrawer').classList.toggle('open');
+            document.getElementById('cartOverlay').classList.toggle('open');
+        }
+
+        function addToCart(button) {
+            const card = button.closest('.card');
+            const name = card.getAttribute('data-name');
+            const price = parseFloat(card.getAttribute('data-price'));
+
+            let existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+
+            saveAndRefresh();
+            
+            let originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-check"></i> Added!';
+            button.style.background = '#25D366';
+            button.style.color = '#ffffff';
+            setTimeout(() => {
+                button.innerHTML = originalText;
+                button.style.background = '';
+                button.style.color = '';
+            }, 1000);
+        }
+
+        function changeQuantity(name, amount) {
+            let item = cart.find(item => item.name === name);
+            if (item) {
+                item.quantity += amount;
+                if (item.quantity <= 0) {
+                    cart = cart.filter(i => i.name !== name);
+                }
+            }
+            saveAndRefresh();
+        }
+
+        function saveAndRefresh() {
+            localStorage.setItem('campusBiteCart', JSON.stringify(cart));
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const cartCount = document.getElementById('cartCount');
+            const cartBody = document.getElementById('cartBody');
+            const cartTotal = document.getElementById('cartTotal');
+
+            let total
