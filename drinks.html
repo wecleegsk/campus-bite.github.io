@@ -159,7 +159,7 @@
     <footer><p>&copy; 2026 Campus Bite Trademark ™</p></footer>
 
 <script>
-let cart = JSON.parse(localStorage.getItem('campusCart')) || '[]');
+let cart = JSON.parse(localStorage.getItem('campusCart') || '[]');
 updateCartUI();
 
 function addToCart(name, price) {
@@ -172,8 +172,12 @@ function addToCart(name, price) {
 }
 
 function updateCartUI() {
-    document.getElementById('cartCount').innerText = cart.reduce((a,b) => a + b.qty, 0);
-    let itemsDiv = document.getElementById('cartItems');
+    const countEl = document.getElementById('cartCount');
+    const itemsDiv = document.getElementById('cartItems');
+    const totalEl = document.getElementById('cartTotal');
+    if(!countEl || !itemsDiv) return;
+
+    countEl.innerText = cart.reduce((a,b) => a + b.qty, 0);
     let total = 0;
     itemsDiv.innerHTML = cart.length === 0 ? '<p style="color:var(--text-muted); text-align:center; margin-top:20px;">Cart is empty</p>' : '';
     cart.forEach((item, index) => {
@@ -187,18 +191,28 @@ function updateCartUI() {
                 </div>
             </div>`;
     });
-    document.getElementById('cartTotal').innerText = `R${total}.00`;
+    if(totalEl) totalEl.innerText = `R${total}.00`;
 }
 
 function removeItem(i) { cart.splice(i,1); localStorage.setItem('campusCart', JSON.stringify(cart)); updateCartUI(); }
 function clearCart() { cart = []; localStorage.removeItem('campusCart'); updateCartUI(); }
+
 function toggleCart(forceOpen) {
     let drawer = document.getElementById('cartDrawer');
     let overlay = document.getElementById('cartOverlay');
-    if (forceOpen === true || !drawer.classList.contains('open')) { drawer.classList.add('open'); overlay.classList.add('open'); }
-    else { drawer.classList.remove('open'); overlay.classList.remove('open'); }
+    if (!drawer || !overlay) return;
+    if (forceOpen === true || !drawer.classList.contains('open')) { 
+        drawer.classList.add('open'); 
+        overlay.classList.add('open');
+        overlay.style.display = 'block';
+    } else { 
+        drawer.classList.remove('open'); 
+        overlay.classList.remove('open');
+        overlay.style.display = 'none';
+    }
 }
-document.getElementById('cartIcon').addEventListener('click', () => toggleCart());
+
+document.getElementById('cartIcon')?.addEventListener('click', () => toggleCart());
 
 function checkout() {
     if (cart.length === 0) return alert('Cart is empty!');
