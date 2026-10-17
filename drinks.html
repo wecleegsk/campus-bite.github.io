@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CAMPUS BITE | DRINKS</title>
-    <!-- Font Awesome & Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
@@ -13,305 +12,61 @@
             --bg-dark: #090b0e;
             --panel-bg: #13171c;
             --accent-gold: #ffb703;
-            --accent-gold-hover: #fb8500;
             --text-white: #ffffff;
             --text-muted: #64748b;
             --glass-border: rgba(255, 255, 255, 0.05);
         }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg-dark); color: var(--text-white); line-height: 1.5; display: flex; flex-direction: column; min-height: 100vh; }
+        header { background-color: rgba(19, 23, 28, 0.8); backdrop-filter: blur(20px); position: sticky; top: 0; z-index: 1000; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--glass-border); }
+        .brand-block { display: flex; flex-direction: column; }
+        .logo { font-size: 1.2rem; font-weight: 800; letter-spacing: -0.5px; color: var(--text-white); }
+        .logo span { color: var(--accent-gold); }
+        .tagline { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 2px; }
+        .nav-links { display: flex; gap: 15px; align-items: center; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-weight: 600; font-size: 0.9rem; padding: 8px 14px; border-radius: 8px; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease; cursor: pointer; }
+        .nav-links a:hover, .nav-links a.active { color: var(--text-white); background: rgba(255, 255, 255, 0.03); }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        /* CART ICON */
+        #cartIcon { background: var(--accent-gold); color: var(--bg-dark) !important; position: relative; }
+        #cartCount { background: white; color: black; font-size: 0.7rem; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; position: absolute; top: -6px; right: -6px; font-weight: 800; }
 
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-white);
-            line-height: 1.5;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+        .category-bar { background: rgba(19, 23, 28, 0.5); border-bottom: 1px solid var(--glass-border); padding: 12px 0; display: flex; justify-content: center; }
+        .category-switcher { display: flex; gap: 12px; list-style: none; }
+        .category-switcher a { color: var(--text-muted); text-decoration: none; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; padding: 8px 20px; border-radius: 99px; border: 1px solid var(--glass-border); background: rgba(255, 255, 255, 0.01); transition: all 0.3s ease; }
+        .category-switcher a.active { color: var(--bg-dark); background: var(--accent-gold); border-color: var(--accent-gold); }
 
-        /* --- Premium Navigation --- */
-        header {
-            background-color: rgba(19, 23, 28, 0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            padding: 15px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--glass-border);
-        }
+        .main-container { max-width: 1200px; margin: 0 auto; padding: 50px 24px; width: 100%; flex-grow: 1; }
+        .hero-titles { text-align: center; margin-bottom: 45px; }
+        .hero-titles h4 { font-size: 0.85rem; color: var(--accent-gold); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; font-weight: 700; }
+        .hero-titles h2 { font-size: 2.8rem; font-weight: 800; letter-spacing: -1px; background: linear-gradient(180deg, #ffffff 0%, #a1a8b5 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        .brand-block {
-            display: flex;
-            flex-direction: column;
-        }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; width: 100%; }
+        .card { background-color: var(--panel-bg); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; border: 1px solid var(--glass-border); transition: all 0.4s ease; }
+        .card:hover { transform: translateY(-4px); border-color: rgba(255, 183, 3, 0.25); }
+        .image-frame { position: relative; width: 100%; padding-top: 85%; background-color: rgba(0, 0, 0, 0.15); overflow: hidden; }
+        .card img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+        .card-details { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; text-align: left; }
+        .info-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 16px; gap: 8px; }
+        .card h6 { font-size: 1.05rem; font-weight: 700; color: var(--text-white); }
+        .price-tag { font-size: 1.15rem; font-weight: 800; color: var(--accent-gold); white-space: nowrap; }
+        
+        .btn-group { display: flex; flex-direction: column; gap: 8px; margin-top: auto; }
+        .add-cart-btn { background-color: var(--accent-gold); color: var(--bg-dark); border: none; padding: 12px; border-radius: 12px; font-weight: 700; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.2s; }
+        .add-cart-btn:hover { background-color: white; }
+        .whatsapp-btn { background-color: rgba(255, 255, 255, 0.03); color: var(--text-white); text-decoration: none; text-align: center; padding: 10px; border-radius: 12px; font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid var(--glass-border); transition: all 0.2s ease; }
+        .whatsapp-btn i { color: #25D366; }
 
-        .logo {
-            font-size: 1.2rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            color: var(--text-white);
-        }
+        /* CART DRAWER */
+        #cartDrawer { position: fixed; top: 0; right: -400px; width: 360px; height: 100vh; background: #13171c; border-left: 1px solid var(--glass-border); z-index: 2000; transition: right 0.3s ease; display: flex; flex-direction: column; padding: 20px; }
+        #cartDrawer.open { right: 0; }
+        #cartOverlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: none; z-index: 1999; }
+        #cartOverlay.open { display: block; }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--glass-border); }
+        .cart-total { margin-top: auto; padding-top: 20px; border-top: 1px solid var(--glass-border); }
+        .checkout-btn { width: 100%; background: #25D366; color: white; border: none; padding: 14px; border-radius: 12px; font-weight: 800; font-size: 1rem; margin-top: 15px; cursor: pointer; display: flex; justify-content: center; gap: 8px; }
 
-        .logo span {
-            color: var(--accent-gold);
-        }
-
-        .tagline {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-top: 2px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 15px;
-        }
-
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            padding: 8px 14px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .nav-links a i {
-            font-size: 0.95rem;
-        }
-
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--text-white);
-            background: rgba(255, 255, 255, 0.03);
-        }
-
-        /* --- Premium Subcategory Filter Bar --- */
-        .category-bar {
-            background: rgba(19, 23, 28, 0.5);
-            border-bottom: 1px solid var(--glass-border);
-            padding: 12px 0;
-            display: flex;
-            justify-content: center;
-        }
-
-        .category-switcher {
-            display: flex;
-            gap: 12px;
-            list-style: none;
-        }
-
-        .category-switcher a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 8px 20px;
-            border-radius: 99px;
-            border: 1px solid var(--glass-border);
-            background: rgba(255, 255, 255, 0.01);
-            transition: all 0.3s ease;
-        }
-
-        .category-switcher a:hover {
-            color: var(--text-white);
-            border-color: rgba(255, 255, 255, 0.15);
-        }
-
-        .category-switcher a.active {
-            color: var(--bg-dark);
-            background: var(--accent-gold);
-            border-color: var(--accent-gold);
-            box-shadow: 0 4px 12px rgba(255, 183, 3, 0.2);
-        }
-
-        /* --- Main Layout --- */
-        .main-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 50px 24px;
-            width: 100%;
-            flex-grow: 1;
-        }
-
-        .hero-titles {
-            text-align: center;
-            margin-bottom: 45px;
-        }
-
-        .hero-titles h4 {
-            font-size: 0.85rem;
-            color: var(--accent-gold);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-            font-weight: 700;
-        }
-
-        .hero-titles h2 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            letter-spacing: -1px;
-            background: linear-gradient(180deg, #ffffff 0%, #a1a8b5 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* --- Menu Grid Configuration --- */
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 24px;
-            width: 100%;
-        }
-
-        /* --- Premium Card Architecture --- */
-        .card {
-            background-color: var(--panel-bg);
-            border-radius: 20px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid var(--glass-border);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(255, 183, 3, 0.25);
-            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.5);
-        }
-
-        .image-frame {
-            position: relative;
-            width: 100%;
-            padding-top: 85%; /* Structured card proportions */
-            background-color: rgba(0, 0, 0, 0.15);
-            overflow: hidden;
-        }
-
-        .card img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .card:hover img {
-            transform: scale(1.05);
-        }
-
-        .card-details {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-            text-align: left;
-        }
-
-        .card-details .info-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 16px;
-            gap: 8px;
-        }
-
-        .card h6 {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--text-white);
-            letter-spacing: -0.2px;
-            line-height: 1.3;
-        }
-
-        .card .price-tag {
-            font-size: 1.15rem;
-            font-weight: 800;
-            color: var(--accent-gold);
-            white-space: nowrap;
-        }
-
-        /* --- Premium Button Matrix --- */
-        .whatsapp-btn {
-            margin-top: auto;
-            background-color: rgba(255, 255, 255, 0.03);
-            color: var(--text-white);
-            text-decoration: none;
-            text-align: center;
-            padding: 12px;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            border: 1px solid var(--glass-border);
-            transition: all 0.2s ease;
-        }
-
-        .whatsapp-btn i {
-            color: #25D366;
-            font-size: 1rem;
-        }
-
-        .whatsapp-btn:hover {
-            background-color: var(--text-white);
-            color: var(--bg-dark);
-            border-color: var(--text-white);
-        }
-
-        .whatsapp-btn:hover i {
-            color: var(--bg-dark);
-        }
-
-        /* --- Footer --- */
-        footer {
-            text-align: center;
-            padding: 40px 24px;
-            margin-top: 60px;
-            border-top: 1px solid var(--glass-border);
-            color: var(--text-muted);
-            font-size: 0.8rem;
-            letter-spacing: 0.5px;
-        }
-
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 16px;
-                padding: 20px;
-            }
-            .nav-links {
-                width: 100%;
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-            .hero-titles h2 {
-                font-size: 2.2rem;
-            }
-        }
+        footer { text-align: center; padding: 40px 24px; margin-top: 60px; border-top: 1px solid var(--glass-border); color: var(--text-muted); font-size: 0.8rem; }
     </style>
 </head>
 <body>
@@ -321,16 +76,12 @@
             <div class="logo">CAMPUS <span>BITE</span></div>
             <div class="tagline">Our vision to satisfy your cravings</div>
         </div>
-        
         <nav class="nav-links">
             <a href="index.html"><i class="fas fa-home"></i> Home</a>
-            <a href="about.html"><i class="fas fa-user"></i> About</a>
-            <a href="services.html"><i class="fas fa-concierge-bell"></i> Services</a>
-            <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+            <a id="cartIcon"><i class="fas fa-shopping-cart"></i> Cart <span id="cartCount">0</span></a>
         </nav>
     </header>
 
-    <!-- Subcategory Navigation -->
     <div class="category-bar">
         <ul class="category-switcher">
             <li><a href="index.html">Kota</a></li>
@@ -345,75 +96,121 @@
         </div>
 
         <div class="menu-grid">
-            <!-- Drink 1 -->
             <div class="card">
-                <div class="image-frame">
-                    <img src="images (19).jpeg" alt="Lemon Twist">
-                </div>
+                <div class="image-frame"><img src="images (19).jpeg" alt="Lemon Twist"></div>
                 <div class="card-details">
-                    <div class="info-row">
-                        <h6>Lemon Twist</h6>
-                        <span class="price-tag">R22.00</span>
+                    <div class="info-row"><h6>Lemon Twist</h6><span class="price-tag">R22.00</span></div>
+                    <div class="btn-group">
+                        <button class="add-cart-btn" onclick="addToCart('Lemon Twist', 22)"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                        <a href="https://wa.me/27790155149?text=Hi%20Campus%20Bite%20I%20want%20Lemon%20Twist%20R22" class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Quick Order</a>
                     </div>
-                    <a href="https://wa.me/27790155149" class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Order Now
-                    </a>
                 </div>
             </div>
-               
-            <!-- Drink 2 -->
             <div class="card">
-                <div class="image-frame">
-                    <img src="images (18).jpeg" alt="Sprite">
-                </div>
+                <div class="image-frame"><img src="images (18).jpeg" alt="Sprite"></div>
                 <div class="card-details">
-                    <div class="info-row">
-                        <h6>Sprite</h6>
-                        <span class="price-tag">R25.00</span>
+                    <div class="info-row"><h6>Sprite</h6><span class="price-tag">R25.00</span></div>
+                    <div class="btn-group">
+                        <button class="add-cart-btn" onclick="addToCart('Sprite', 25)"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                        <a href="https://wa.me/27790155149?text=Hi%20Campus%20Bite%20I%20want%20Sprite%20R25" class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Quick Order</a>
                     </div>
-                    <a href="https://wa.me/27790155149" class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Order Now
-                    </a>
                 </div>
             </div>
-        
-            <!-- Drink 3 -->
             <div class="card">
-                <div class="image-frame">
-                    <img src="images (14).jpeg" alt="300ml Coke">
-                </div>
+                <div class="image-frame"><img src="images (14).jpeg" alt="300ml Coke"></div>
                 <div class="card-details">
-                    <div class="info-row">
-                        <h6>300ml Coke</h6>
-                        <span class="price-tag">R14.00</span>
+                    <div class="info-row"><h6>300ml Coke</h6><span class="price-tag">R14.00</span></div>
+                    <div class="btn-group">
+                        <button class="add-cart-btn" onclick="addToCart('300ml Coke', 14)"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                        <a href="https://wa.me/27790155149?text=Hi%20Campus%20Bite%20I%20want%20300ml%20Coke%20R14" class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Quick Order</a>
                     </div>
-                    <a href="https://wa.me/27790155149" class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Order Now
-                    </a>
                 </div>
             </div>
-        
-            <!-- Drink 4 -->
             <div class="card">
-                <div class="image-frame">
-                    <img src="images (15).jpeg" alt="750ml Coke">
-                </div>
+                <div class="image-frame"><img src="images (15).jpeg" alt="750ml Coke"></div>
                 <div class="card-details">
-                    <div class="info-row">
-                        <h6>750ml Coke</h6>
-                        <span class="price-tag">R18.00</span>
+                    <div class="info-row"><h6>750ml Coke</h6><span class="price-tag">R18.00</span></div>
+                    <div class="btn-group">
+                        <button class="add-cart-btn" onclick="addToCart('750ml Coke', 18)"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                        <a href="https://wa.me/27790155149?text=Hi%20Campus%20Bite%20I%20want%20750ml%20Coke%20R18" class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Quick Order</a>
                     </div>
-                    <a href="https://wa.me/27790155149" class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Order Now
-                    </a>
                 </div>
             </div>
         </div>
     </main>
 
-    <footer>
-        <p>&copy; 2026 Campus Bite Trademark ™</p>
-    </footer>
+    <!-- CART DRAWER -->
+    <div id="cartOverlay" onclick="toggleCart()"></div>
+    <div id="cartDrawer">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+            <h3>Your Cart</h3>
+            <i class="fas fa-times" style="cursor:pointer;" onclick="toggleCart()"></i>
+        </div>
+        <div id="cartItems" style="flex-grow:1; overflow-y:auto;"></div>
+        <div class="cart-total">
+            <div style="display:flex; justify-content:space-between; font-weight:800; font-size:1.2rem;">
+                <span>Total:</span><span id="cartTotal">R0.00</span>
+            </div>
+            <button class="checkout-btn" onclick="checkout()"><i class="fab fa-whatsapp"></i> Checkout on WhatsApp</button>
+            <button onclick="clearCart()" style="width:100%; background:transparent; border:1px solid var(--glass-border); color:var(--text-muted); padding:10px; border-radius:10px; margin-top:10px; cursor:pointer;">Clear Cart</button>
+        </div>
+    </div>
 
+    <footer><p>&copy; 2026 Campus Bite Trademark ™</p></footer>
+
+<script>
+let cart = JSON.parse(localStorage.getItem('campusCart')) || '[]');
+updateCartUI();
+
+function addToCart(name, price) {
+    let existing = cart.find(i => i.name === name);
+    if (existing) { existing.qty++; }
+    else { cart.push({name, price, qty: 1}); }
+    localStorage.setItem('campusCart', JSON.stringify(cart));
+    updateCartUI();
+    toggleCart(true);
+}
+
+function updateCartUI() {
+    document.getElementById('cartCount').innerText = cart.reduce((a,b) => a + b.qty, 0);
+    let itemsDiv = document.getElementById('cartItems');
+    let total = 0;
+    itemsDiv.innerHTML = cart.length === 0 ? '<p style="color:var(--text-muted); text-align:center; margin-top:20px;">Cart is empty</p>' : '';
+    cart.forEach((item, index) => {
+        total += item.price * item.qty;
+        itemsDiv.innerHTML += `
+            <div class="cart-item">
+                <div><strong>${item.name}</strong><br><small style="color:var(--text-muted)">R${item.price} x ${item.qty}</small></div>
+                <div style="display:flex; gap:8px; align-items:center;">
+                    <span style="color:var(--accent-gold); font-weight:700;">R${item.price * item.qty}</span>
+                    <i class="fas fa-trash" style="color:#ff4d4d; cursor:pointer;" onclick="removeItem(${index})"></i>
+                </div>
+            </div>`;
+    });
+    document.getElementById('cartTotal').innerText = `R${total}.00`;
+}
+
+function removeItem(i) { cart.splice(i,1); localStorage.setItem('campusCart', JSON.stringify(cart)); updateCartUI(); }
+function clearCart() { cart = []; localStorage.removeItem('campusCart'); updateCartUI(); }
+function toggleCart(forceOpen) {
+    let drawer = document.getElementById('cartDrawer');
+    let overlay = document.getElementById('cartOverlay');
+    if (forceOpen === true || !drawer.classList.contains('open')) { drawer.classList.add('open'); overlay.classList.add('open'); }
+    else { drawer.classList.remove('open'); overlay.classList.remove('open'); }
+}
+document.getElementById('cartIcon').addEventListener('click', () => toggleCart());
+
+function checkout() {
+    if (cart.length === 0) return alert('Cart is empty!');
+    let message = 'Hi Campus Bite! I want to order:%0A%0A';
+    let total = 0;
+    cart.forEach(item => {
+        message += `- ${item.name} x${item.qty} = R${item.price * item.qty}%0A`;
+        total += item.price * item.qty;
+    });
+    message += `%0A*Total: R${total}.00*`;
+    window.open(`https://wa.me/27790155149?text=${message}`, '_blank');
+}
+</script>
 </body>
 </html>
