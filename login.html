@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Login | Campus Bite</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 16px; background: #090b0e; color: #fff; font: 15px system-ui, sans-serif; }
+  .card { width: 100%; max-width: 380px; background: #12161c; border-radius: 16px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,.5); }
+  .brand { padding: 20px 16px 12px; text-align: center; }
+  .brand h1 { margin: 0; font-size: 24px; }
+  .brand h1 span { color: #ffb703; }
+  .brand small { color: #94a3b8; letter-spacing: 2px; font-size: 11px; }
+  .tabs { display: flex; border-bottom: 1px solid rgba(255,255,255,.08); }
+  .tab { flex: 1; padding: 12px; background: none; border: none; border-bottom: 2px solid transparent; color: #94a3b8; font: inherit; font-weight: 600; cursor: pointer; }
+  .tab.on { color: #ffb703; border-bottom-color: #ffb703; }
+  .body { padding: 18px 16px 20px; display: flex; flex-direction: column; gap: 10px; }
+  .in { padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,.12); background: #090b0e; color: #fff; font: inherit; }
+  .in:focus { outline: 2px solid #ffb703; }
+  .go { padding: 12px; border: none; border-radius: 10px; background: #ffb703; color: #090b0e; font: inherit; font-weight: 700; cursor: pointer; text-align: center; text-decoration: none; }
+  .alt { background: #1e242c; color: #fff; }
+  .msg { min-height: 18px; font-size: 13px; color: #f87171; }
+  .msg.ok { color: #4ade80; }
+  .hi { margin: 0; color: #94a3b8; }
+  .back { display: block; text-align: center; padding: 0 0 18px; color: #94a3b8; font-size: 13px; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="brand"><h1>CAMPUS <span>BITE</span></h1><small>SATISFY YOUR CRAVINGS</small></div>
+  <div id="view"></div>
+  <a class="back" href="index.html">&larr; Back to the website</a>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ===================== DATA (edit here) ===================== */
+  var LINKS = { menu: 'index.html', order: 'fooddel.html' };
+  var USERS_KEY = 'cb_users';
+  var SESSION_KEY = 'cb_session';
+  /* =================== END DATA ================================ */
+
+  function load() { try { return JSON.parse(localStorage.getItem(USERS_KEY)) || {}; } catch (e) { return {}; } }
+  function save(u) { try { localStorage.setItem(USERS_KEY, JSON.stringify(u)); return true; } catch (e) { return false; } }
+  function getSession() { try { return localStorage.getItem(SESSION_KEY); } catch (e) { return null; } }
+  function setSession(k) { try { if (k) localStorage.setItem(SESSION_KEY, k); else localStorage.removeItem(SESSION_KEY); } catch (e) {} }
+  function hash(s) {
+    if (window.crypto && crypto.subtle && window.TextEncoder) {
+      return crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)).then(function (buf) {
+        return Array.prototype.map.call(new Uint8Array(buf), function (b) { return ('0' + b.toString(16)).slice(-2); }).join('');
+      });
+    }
+    return Promise.resolve('plain:' + s);
+  }
+  function displayName() { var u = load()[getSession()]; return u ? u.name : ''; }
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text !== undefined) e.textContent = text;
+    return e;
+  }
+
+  var view = document.getElementById('view');
+
+  function renderAuth(mode, note) {
+    view.textContent = '';
+    var tabs = el('div', 'tabs');
+    var tLogin = el('button', 'tab' + (mode === 'login' ? ' on' : ''), 'Login');
+    var tSign = el('button', 'tab' + (mode === 'signup' ? ' on' : ''), 'Sign Up');
+    tLogin.type = 'button'; tSign.type = 'button';
+    tLogin.addEventListener('click', function () { renderAuth('login'); });
+    tSign.addEventListener('click', function () { renderAuth('signup'); });
+    tabs.appendChild(tLogin); tabs.appendChild(tSign);
+
+    var form = el('form', 'body');
+    var u = el('input', 'in'); u.type = 'text'; u.placeholder = 'Username'; u.autocomplete = 'username'; u.setAttribute('aria-label', 'Username');
+    var p = el('input', 'in'); p.type = 'password'; p.placeholder = 'Password'; p.setAttribute('aria-label', 'Password');
+    p.autocomplete = mode === 'login' ? 'current-password' : 'new-password';
+    var msg = el('div', 'msg' + (note ? ' ok' : ''), note || ''); msg.setAttribute('aria-live', 'polite');
+    var go = el('button', 'go', mode === 'login' ? 'Login' : 'Create account'); go.type = 'submit';
+    form.appendChild(u); form.appendChild(p); form.appendChild(msg); form.appendChild(go);
+    view.appendChild(tabs); view.appendChild(form);
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      msg.className = 'msg';
+      var name = u.value.trim(), pass = p.value;
+      if (!name || !pass) { msg.textContent = 'Enter a username and password.'; return; }
+      var key = name.toLowerCase(), users = load();
+      if (mode === 'login' && !Object.keys(users).length) { msg.textContent = 'Please sign up first.'; return; }
+      hash(key + ':' + pass).then(function (h) {
+        if (mode === 'signup') {
+          if (users[key]) { msg.textContent = 'That username is already taken.'; return; }
+          users[key] = { name: name, hash: h };
+          if (!save(users)) { msg.textContent = 'Could not save the account (browser storage is blocked).'; return; }
+          setSession(key); renderHome('Account created successfully!');
+        } else {
+          if (!users[key] || users[key].hash !== h) { msg.textContent = 'Invalid username or password.'; return; }
+          setSession(key); renderHome('Login successful!');
+        }
+      });
+    });
+  }
+
+  function renderHome(note) {
+    view.textContent = '';
+    var body = el('div', 'body');
+    if (note) body.appendChild(el('div', 'msg ok', note));
+    body.appendChild(el('p', 'hi', 'Welcome, ' + displayName() + '!'));
+    var menu = el('a', 'go', 'View Menu'); menu.href = LINKS.menu;
+    var order = el('a', 'go', 'Order Food'); order.href = LINKS.order;
+    var out = el('button', 'go alt', 'Logout'); out.type = 'button';
+    out.addEventListener('click', function () { setSession(null); renderAuth('login', 'Logged out successfully!'); });
+    body.appendChild(menu); body.appendChild(order); body.appendChild(out);
+    view.appendChild(body);
+  }
+
+  if (getSession() && displayName()) renderHome(); else renderAuth('login');
+})();
+</script>
+</body>
+</html>
