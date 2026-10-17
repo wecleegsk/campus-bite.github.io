@@ -32,13 +32,12 @@
 <script>
 (function () {
   'use strict';
-  var LINKS = { menu: 'login.html' };
+  var LINKS = { menu: 'login.html' }; // your Kota menu file
   var USERS_KEY = 'cb_users';
   var SESSION_KEY = 'cb_session';
 
   function load() { try { return JSON.parse(localStorage.getItem(USERS_KEY)) || {}; } catch (e) { return {}; } }
   function save(u) { try { localStorage.setItem(USERS_KEY, JSON.stringify(u)); return true; } catch (e) { return false; } }
-  function getSession() { try { return localStorage.getItem(SESSION_KEY); } catch (e) { return null; } }
   function setSession(k) { try { if (k) localStorage.setItem(SESSION_KEY, k); else localStorage.removeItem(SESSION_KEY); } catch (e) {} }
   function hash(s) {
     if (window.crypto && crypto.subtle && window.TextEncoder) {
@@ -48,7 +47,6 @@
     }
     return Promise.resolve('plain:' + s);
   }
-  function displayName() { var u = load()[getSession()]; return u ? u.name : ''; }
   function el(tag, cls, text) {
     var e = document.createElement(tag);
     if (cls) e.className = cls;
@@ -71,7 +69,6 @@
     var form = el('form', 'body');
     var u = el('input', 'in'); u.type = 'text'; u.placeholder = 'Username'; u.autocomplete = 'username';
     var p = el('input', 'in'); p.type = 'password'; p.placeholder = 'Password';
-    p.autocomplete = mode === 'login' ? 'current-password' : 'new-password';
     var msg = el('div', 'msg' + (note ? ' ok' : ''), note || '');
     var go = el('button', 'go', mode === 'login' ? 'Login' : 'Create account'); go.type = 'submit';
     form.appendChild(u); form.appendChild(p); form.appendChild(msg); form.appendChild(go);
@@ -79,7 +76,6 @@
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      msg.className = 'msg';
       var name = u.value.trim(), pass = p.value;
       if (!name || !pass) { msg.textContent = 'Enter a username and password.'; return; }
       var key = name.toLowerCase(), users = load();
@@ -88,7 +84,7 @@
         if (mode === 'signup') {
           if (users[key]) { msg.textContent = 'That username is already taken.'; return; }
           users[key] = { name: name, hash: h };
-          if (!save(users)) { msg.textContent = 'Could not save the account.'; return; }
+          save(users);
           setSession(key);
           window.location.href = LINKS.menu;
         } else {
@@ -100,12 +96,11 @@
     });
   }
 
-  // If already logged in, go straight to login.html (your menu)
-  if (getSession() && displayName()) {
-    window.location.href = LINKS.menu;
-  } else {
-    renderAuth('login');
-  }
+  // --- FOR PRESENTATION: ALWAYS SHOW LOGIN ---
+  // Clear any old session so you can demo login every time
+  localStorage.removeItem(SESSION_KEY);
+  renderAuth('login');
+
 })();
 </script>
 </body>
