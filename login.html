@@ -1,55 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CAMPUS BITE | KOTA</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root { --bg-dark:#090b0e; --panel-bg:#13171c; --accent-gold:#ffb703; --text-white:#ffffff; --text-muted:#64748b; --glass-border:rgba(255,255,255,0.05); }
-*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg-dark);color:var(--text-white);min-height:100vh;display:flex;flex-direction:column}
-header{background:rgba(19,23,28,0.85);backdrop-filter:blur(20px);position:sticky;top:0;z-index:1000;padding:15px 5%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--glass-border)}
-.logo{font-size:1.2rem;font-weight:800}.logo span{color:var(--accent-gold)}.tagline{font-size:0.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:1.5px;margin-top:2px}
-.nav-links{display:flex;gap:12px;align-items:center}.nav-links a{color:var(--text-muted);text-decoration:none;font-weight:600;font-size:0.9rem;padding:8px 14px;border-radius:8px;display:flex;gap:8px;align-items:center;cursor:pointer}
-#cartIcon{background:var(--accent-gold);color:#090b0e !important}#cartCount{background:white;color:black;font-size:0.7rem;width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-left:6px;font-weight:800}
-.category-bar{background:rgba(19,23,28,0.5);border-bottom:1px solid var(--glass-border);padding:12px 0;display:flex;justify-content:center}
-.category-switcher{display:flex;gap:12px;list-style:none}.category-switcher a{color:var(--text-muted);text-decoration:none;font-weight:700;font-size:0.8rem;text-transform:uppercase;letter-spacing:1px;padding:8px 20px;border-radius:99px;border:1px solid var(--glass-border)}
-.category-switcher a.active{color:var(--bg-dark);background:var(--accent-gold);border-color:var(--accent-gold)}
-.main-container{max-width:1200px;margin:0 auto;padding:50px 24px;width:100%;flex-grow:1}.hero-titles{text-align:center;margin-bottom:45px}.hero-titles h4{color:var(--accent-gold);letter-spacing:3px;text-transform:uppercase;font-size:0.85rem;margin-bottom:8px}
-.hero-titles h2{font-size:2.8rem;font-weight:800;background:linear-gradient(180deg,#fff 0%,#a1a8b5 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px}.card{background:var(--panel-bg);border-radius:20px;overflow:hidden;border:1px solid var(--glass-border);display:flex;flex-direction:column}
-.image-frame{position:relative;padding-top:85%;overflow:hidden;background:rgba(0,0,0,0.15)}.card img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover}
-.card-details{padding:20px;display:flex;flex-direction:column;flex-grow:1}.info-row{display:flex;justify-content:space-between;margin-bottom:16px}.card h6{font-size:1.05rem;font-weight:700}.price-tag{color:var(--accent-gold);font-weight:800;font-size:1.15rem}
-.add-cart-btn{background:var(--accent-gold);color:#090b0e;border:none;padding:13px;border-radius:12px;font-weight:700;font-size:0.9rem;cursor:pointer;display:flex;justify-content:center;gap:8px;width:100%}
-.add-cart-btn:hover{background:white}#cartDrawer{position:fixed;top:0;right:-400px;width:380px;max-width:85vw;height:100dvh;background:#13171c;z-index:2000;transition:right 0.3s ease;display:flex;flex-direction:column;border-left:1px solid var(--glass-border)}#cartDrawer.open{right:0}#cartOverlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);display:none;z-index:1999}#cartOverlay.open{display:block}.cart-row{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.05)}.qty-control{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.08);border-radius:8px;padding:5px 12px;font-size:0.9rem}.qty-control span{cursor:pointer;font-weight:800;user-select:none;padding:0 4px}.cust-input{width:100%;padding:11px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:#090b0e;color:#fff;font:inherit;font-size:0.9rem;margin-top:4px}.cust-label{font-size:0.70rem;color:#94a3b8;font-weight:700;letter-spacing:0.5px;text-transform:uppercase}footer{text-align:center;padding:40px 24px;margin-top:60px;border-top:1px solid var(--glass-border);color:var(--text-muted);font-size:0.8rem}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAMPUS BITE | KOTA MENU</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #090b0e;
+            --panel-bg: #13171c;
+            --accent-gold: #ffb703;
+            --accent-gold-hover: #fb8500;
+            --text-white: #ffffff;
+            --text-muted: #64748b;
+            --glass-border: rgba(255, 255, 255, 0.05);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg-dark); color: var(--text-white); line-height: 1.5; overflow-x: hidden; }
+        header { background-color: rgba(19, 23, 28, 0.8); backdrop-filter: blur(20px); position: sticky; top: 0; z-index: 1000; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--glass-border); }
+        .brand-block { display: flex; flex-direction: column; }
+        .logo { font-size: 1.2rem; font-weight: 800; letter-spacing: -0.5px; color: var(--text-white); }
+        .logo span { color: var(--accent-gold); }
+        .tagline { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 2px; }
+        .nav-links { display: flex; gap: 15px; align-items: center; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease; padding: 8px 12px; border-radius: 8px; }
+        .nav-links a:hover, .nav-links a.active { color: var(--text-white); background: rgba(255, 255, 255, 0.03); }
+        .cart-nav-btn { background: rgba(255, 183, 3, 0.1); color: var(--accent-gold); border: 1px solid rgba(255, 183, 3, 0.3); padding: 8px 16px; border-radius: 20px; cursor: pointer; font-weight: 700; font-size: 0.85rem; display: flex; align-items: center; gap: 8px; }
+        .cart-badge { background: var(--accent-gold); color: var(--bg-dark); font-size: 0.75rem; padding: 2px 7px; border-radius: 50%; font-weight: 800; }
+        .menu-toggle-container { display: flex; background: rgba(255, 255, 255, 0.03); padding: 4px; border-radius: 99px; border: 1px solid var(--glass-border); }
+        .category-btn { color: var(--text-muted); padding: 8px 24px; border-radius: 99px; text-decoration: none; font-size: 0.85rem; font-weight: 700; transition: all 0.25s ease; }
+        .category-btn.active { background-color: var(--accent-gold); color: var(--bg-dark); box-shadow: 0 4px 12px rgba(255, 183, 3, 0.25); }
+        .main-container { max-width: 1200px; margin: 0 auto; padding: 60px 24px; }
+        .hero-titles { text-align: center; margin-bottom: 60px; }
+        .hero-titles h4 { font-size: 0.9rem; color: var(--accent-gold); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; font-weight: 700; }
+        .hero-titles h2 { font-size: 3rem; font-weight: 800; letter-spacing: -1px; background: linear-gradient(180deg, #ffffff 0%, #a1a8b5 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 32px; }
+        .card { background-color: var(--panel-bg); border-radius: 24px; overflow: hidden; display: flex; flex-direction: column; border: 1px solid var(--glass-border); transition: all 0.4s ease; position: relative; }
+        .card:hover { transform: translateY(-6px); border-color: rgba(255, 183, 3, 0.3); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7); }
+        .image-frame { position: relative; width: 100%; padding-top: 80%; background-color: rgba(0, 0, 0, 0.2); overflow: hidden; }
+        .card img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .card:hover img { transform: scale(1.08); }
+        .price-tag { position: absolute; top: 16px; right: 16px; background: rgba(9, 11, 14, 0.8); backdrop-filter: blur(12px); color: var(--accent-gold); font-weight: 800; padding: 6px 16px; border-radius: 99px; font-size: 0.9rem; border: 1px solid rgba(255, 183, 3, 0.25); z-index: 2; }
+        .card-details { padding: 24px; display: flex; flex-direction: column; flex-grow: 1; }
+        .card h6 { font-size: 1.25rem; margin-bottom: 20px; font-weight: 700; color: var(--text-white); }
+        .card-actions { margin-top: auto; display: flex; flex-direction: column; gap: 10px; }
+        .add-cart-btn { background-color: var(--accent-gold); color: var(--bg-dark); border: none; padding: 12px; border-radius: 14px; font-weight: 700; font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.3s ease; }
+        .cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(4px); z-index: 1999; display: none; }
+        .cart-overlay.open { display: block; }
+        .cart-drawer { position: fixed; top: 0; right: -400px; width: 100%; max-width: 380px; height: 100%; background: var(--panel-bg); border-left: 1px solid var(--glass-border); z-index: 2000; display: flex; flex-direction: column; transition: right 0.4s ease; }
+        .cart-drawer.open { right: 0; }
+        .cart-header { padding: 24px; border-bottom: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center; }
+        .close-cart-btn { background: none; border: none; color: var(--text-muted); font-size: 24px; cursor: pointer; }
+        .cart-body { flex: 1; overflow-y: auto; padding: 24px; }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--glass-border); }
+        .cart-item-info h4 { font-size: 0.95rem; color: var(--text-white); margin-bottom: 4px; }
+        .cart-item-info small { color: var(--text-muted); }
+        .cart-item-controls { display: flex; align-items: center; gap: 10px; background: rgba(255, 255, 255, 0.03); padding: 4px 8px; border-radius: 8px; border: 1px solid var(--glass-border); }
+        .cart-item-controls button { background: none; border: none; color: var(--text-white); cursor: pointer; font-weight: bold; }
+        .cart-footer { padding: 24px; border-top: 1px solid var(--glass-border); background: rgba(9, 11, 14, 0.4); display:flex; flex-direction:column; gap:12px;}
+        .cart-total-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; font-weight: 700; font-size: 1.1rem; }
+        .whatsapp-checkout-btn { width: 100%; background: #25D366; color: white; border: none; padding: 14px; border-radius: 14px; font-size: 0.95rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .cust-input{ width:100%; padding:12px 14px; border-radius:10px; border:1px solid rgba(255,255,255,.12); background:#090b0e; color:#fff; font:inherit; font-size:0.9rem;}
+        .cust-input:focus{ outline:2px solid #ffb703; }
+        .cust-label{ font-size:0.75rem; color:#94a3b8; font-weight:600; letter-spacing:0.5px; }
+        footer { text-align: center; padding: 40px 24px; margin-top: 100px; border-top: 1px solid var(--glass-border); color: var(--text-muted); font-size: 0.8rem; }
+        @media (max-width: 768px) { header { flex-direction: column; gap: 16px; padding: 20px; } .hero-titles h2 { font-size: 2.2rem; } }
+    </style>
 </head>
 <body>
-<header><div><div class="logo">CAMPUS <span>BITE</span></div><div class="tagline">Our vision to satisfy your cravings</div></div>
-<nav class="nav-links"><a href="index.html"><i class="fas fa-home"></i> Home</a><a id="cartIcon"><i class="fas fa-shopping-cart"></i> Cart <span id="cartCount">0</span></a></nav></header>
-<div class="category-bar"><ul class="category-switcher"><li><a href="index.html" class="active">Kota</a></li><li><a href="drinks.html">Drinks</a></li></ul></div>
-<main class="main-container">
-<div class="hero-titles"><h4>Welcome to Campus Bite</h4><h2>Signature Kotas</h2></div>
-<div class="menu-grid">
-<div class="card"><div class="image-frame"><img src="kota1.jpeg"></div><div class="card-details"><div class="info-row"><h6>Medium Size Kota</h6><span class="price-tag">R25.00</span></div><button class="add-cart-btn" onclick="addToCart('Medium Size Kota',25)"><i class="fas fa-cart-plus"></i> Add to Cart</button></div></div>
-<div class="card"><div class="image-frame"><img src="kota2.jpeg"></div><div class="card-details"><div class="info-row"><h6>Kota King</h6><span class="price-tag">R35.00</span></div><button class="add-cart-btn" onclick="addToCart('Kota King',35)"><i class="fas fa-cart-plus"></i> Add to Cart</button></div></div>
-<div class="card"><div class="image-frame"><img src="kota3.jpeg"></div><div class="card-details"><div class="info-row"><h6>Kota King Double</h6><span class="price-tag">R45.00</span></div><button class="add-cart-btn" onclick="addToCart('Kota King Double',45)"><i class="fas fa-cart-plus"></i> Add to Cart</button></div></div>
-</div>
-</main>
-<div id="cartOverlay" onclick="toggleCart()"></div>
-<div id="cartDrawer"><div style="display:flex;justify-content:space-between;align-items:center;padding:20px;border-bottom:1px solid rgba(255,255,255,0.05);flex-shrink:0"><h3 style="font-size:1rem;font-weight:700">Your Campus Cart</h3><i class="fas fa-times" style="cursor:pointer;color:#64748b" onclick="toggleCart()"></i></div><div id="cartItems" style="flex-grow:1;overflow-y:auto;padding:10px 20px"></div>
-<div style="flex-shrink:0;padding:16px 20px 24px 20px;border-top:1px solid rgba(255,255,255,0.1);background:#13171c;display:flex;flex-direction:column;gap:10px"><div><label class="cust-label">👤 Your Name</label><input id="custName" class="cust-input" placeholder="e.g. Thabo Nkosi"></div><div><label class="cust-label">📍 Delivery Address</label><input id="custAddress" class="cust-input" placeholder="e.g. Res B, Room 12"></div><div style="display:flex;justify-content:space-between;font-weight:700;margin-top:6px;margin-bottom:4px;font-size:1.1rem"><span>Total:</span><span id="cartTotal" style="color:#ffb703">R0.00</span></div><button onclick="checkout()" style="width:100%;background:#25D366;color:white;border:none;padding:16px;border-radius:999px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;font-size:1rem"><i class="fab fa-whatsapp"></i> Checkout via WhatsApp</button></div></div>
-<footer><p>&copy; 2026 Campus Bite Trademark ™</p></footer>
-<script>
-let cart=[];try{cart=JSON.parse(localStorage.getItem('cb_mainCart')||'[]');}catch(e){cart=[]}
-function save(){localStorage.setItem('cb_mainCart',JSON.stringify(cart))}
-function addToCart(name,price){let f=cart.find(x=>x.name===name);if(f){f.qty=(f.qty||f.quantity||0)+1;f.quantity=f.qty}else cart.push({name,price,qty:1,quantity:1});save();updateUI();toggleCart(true)}
-function updateUI(){document.getElementById('cartCount').innerText=cart.reduce((s,i)=>s+(i.qty||i.quantity||0),0);let div=document.getElementById('cartItems');let total=0;if(cart.length===0){div.innerHTML='<p style="color:#64748b;text-align:center;margin-top:30px">Cart is empty</p>'}else{div.innerHTML='';cart.forEach((it,idx)=>{let q=it.qty||it.quantity||0;total+=it.price*q;div.innerHTML+=`<div class="cart-row"><div><div style="font-weight:700;font-size:0.9rem;margin-bottom:4px">${it.name}</div><div style="color:#64748b;font-size:0.8rem">R${it.price}.00 each</div></div><div class="qty-control"><span onclick="changeQty(${idx},-1)">-</span><b>${q}</b><span onclick="changeQty(${idx},1)">+</span></div></div>`})}document.getElementById('cartTotal').innerText='R'+total+'.00'}
-function changeQty(i,d){let q=cart[i].qty||cart[i].quantity||0;q+=d;if(q<=0)cart.splice(i,1);else{cart[i].qty=q;cart[i].quantity=q}save();updateUI()}
-function toggleCart(force){let d=document.getElementById('cartDrawer');let o=document.getElementById('cartOverlay');if(force===true){d.classList.add('open');o.classList.add('open')}else if(force===false){d.classList.remove('open');o.classList.remove('open')}else{d.classList.toggle('open');o.classList.toggle('open')}try{var s=localStorage.getItem('cb_session');var u=JSON.parse(localStorage.getItem('cb_users')||'{}');if(s&&u[s]){var n=document.getElementById('custName');if(n&&!n.value)n.value=u[s].name}}catch(e){}}
-function checkout(){if(cart.length===0)return alert('Cart is empty');var nameEl=document.getElementById('custName');var addrEl=document.getElementById('custAddress');var custName=nameEl?nameEl.value.trim():'';var custAddress=addrEl?addrEl.value.trim():'';if(!custName){alert('Please enter your name');nameEl.focus();return}if(!custAddress){alert('Please enter your delivery address');addrEl.focus();return}let tot=0;let msg=`*NEW CAMPUS BITE ORDER*%0A%0A`;msg+=`*Name:* ${custName}%0A*Address:* ${custAddress}%0A%0A*Order:*%0A`;cart.forEach(i=>{let q=i.qty||i.quantity||0;msg+=`• ${q}x ${i.name} - R${i.price*q}.00%0A`;tot+=i.price*q});msg+=`%0A*Total: R${tot}.00*%0A%0APlease confirm my order!`;window.open(`https://wa.me/27790155149?text=${msg}`,'_blank')}
-updateUI();document.getElementById('cartIcon').addEventListener('click',()=>toggleCart());
-try{var session=localStorage.getItem('cb_session');var users=JSON.parse(localStorage.getItem('cb_users')||'{}');if(session&&users[session]){var n=document.getElementById('custName');if(n)n.value=users[session].name}}catch(e){}
-</script>
+    <header>
+        <div class="brand-block">
+            <div class="logo">CAMPUS <span>BITE</span></div>
+            <div class="tagline">Satisfy Your Cravings</div>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+            <a href="login.html">Login</a>
+            <button class="cart-nav-btn" onclick="toggleCart()">
+                <i class="fas fa-shopping-cart"></i> Cart <span id="cartCount" class="cart-badge">0</span>
+            </button>
+        </nav>
+        <div class="menu-toggle-container">
+            <a href="index.html" class="category-btn active">KOTA</a>
+            <a href="drinks.html" class="category-btn">DRINKS</a>
+        </div>
+    </header>
+    <main class="main-container">
+        <div class="hero-titles">
+            <h4>Fresh & Hot</h4>
+            <h2>Our Menu Selection</h2>
+        </div>
+        <div class="menu-grid">
+            <div class="card" data-name="Kota King" data-price="35.00">
+                <span class="price-tag">R35.00</span>
+                <div class="image-frame"><img src="images (6).jpeg" alt="Kota King"></div>
+                <div class="card-details"><h6>Kota King</h6><div class="card-actions"><button class="add-cart-btn" onclick="addToCart(this)"><i class="fas fa-cart-plus"></i> Add to Cart</button></div></div>
+            </div>
+            <div class="card" data-name="Medium Size Kota" data-price="25.00">
+                <span class="price-tag">R25.00</span>
+                <div class="image-frame"><img src="images (7).jpeg" alt="Medium size Kota"></div>
+                <div class="card-details"><h6>Medium Size Kota</h6><div class="card-actions"><button class="add-cart-btn" onclick="addToCart(this)"><i class="fas fa-cart-plus"></i> Add to Cart</button></div></div>
+            </div>
+            <div class="card" data-name="Fries (Big Size)" data-price="30.00">
+                <span class="price-tag">R30.00</span>
+                <div class="image-frame"><img src="images (5).jpeg" alt="Fries Big size"></div>
+                <div class="card-details"><h6>Fries (Big Size)</h6><div class="card-actions"><button class="add-cart-btn" onclick="addToCart(this)"><i class="fas fa-cart-plus"></i> Add to Cart</button></div></div>
+            </div>
+             <div class="card" data-name="Medium Fries + 2 Russians" data-price="40.00">
+                <span class="price-tag">R40.00</span>
+                <div class="image-frame"><img src="images (11).jpeg" alt="Medium size Fries with 2 Russians"></div>
+                <div class="card-details"><h6>Medium Fries + 2 Russians</h6><div class="card-actions"><button class="add-cart-btn" onclick="addToCart(this)"><i class="fas fa-cart-plus"></i> Add to Cart</button></div></div>
+            </div>
+        </div>
+    </main>
+    <div id="cartOverlay" class="cart-overlay" onclick="toggleCart()"></div>
+    <div id="cartDrawer" class="cart-drawer">
+        <div class="cart-header">
+            <h3>Your Campus Cart</h3>
+            <button class="close-cart-btn" onclick="toggleCart()">&times;</button>
+        </div>
+        <div id="cartBody" class="cart-body">
+            <p style="text-align: center; color: var(--text-muted); margin-top: 40px;">Your cart is empty 🍔</p>
+        </div>
+        <div class="cart-footer">
+            <div><label class="cust-label">👤 YOUR NAME</label><input id="custName" class="cust-input" placeholder="e.g. Thabo Nkosi"></div>
+            <div><label class="cust-label">📍 DELIVERY ADDRESS</label><input id="custAddress" class="cust-input" placeholder="e.g. Res B, Room 12, Mandela"></div>
+            <div class="cart-total-row"><span>Total:</span><span id="cartTotal" style="color: var(--accent-gold);">R0.00</span></div>
+            <button class="whatsapp-checkout-btn" onclick="checkoutWhatsApp()"><i class="fab fa-whatsapp" style="font-size: 1.2rem;"></i> Checkout via WhatsApp</button>
+        </div>
+    </div>
+    <footer><p>&copy; 2026 Campus Bite Trademark ™</p></footer>
+    <script>
+        const CART_KEY = 'cb_mainCart';
+        let cart = [];
+        try { cart = JSON.parse(localStorage.getItem(CART_KEY) || '[]'); } catch(e){ cart=[]; }
+        updateCartUI();
+        (function(){ try{ var s=localStorage.getItem('cb_session'); var u=JSON.parse(localStorage.getItem('cb_users')||'{}'); if(s&&u[s]){ var n=document.getElementById('custName'); if(n) n.value=u[s].name; } }catch(e){} })();
+        function toggleCart() {
+            const drawer = document.getElementById('cartDrawer');
+            const overlay = document.getElementById('cartOverlay');
+            if (drawer && overlay) {
+                drawer.classList.toggle('open');
+                overlay.classList.toggle('open');
+                try{ var s=localStorage.getItem('cb_session'); var u=JSON.parse(localStorage.getItem('cb_users')||'{}'); if(s&&u[s]){ var n=document.getElementById('custName'); if(n&&!n.value) n.value=u[s].name; } }catch(e){}
+            }
+        }
+        function addToCart(buttonOrName, priceParam) {
+            let name, price;
+            if(typeof buttonOrName === 'string'){ name = buttonOrName; price = priceParam; }
+            else { const card = buttonOrName.closest('.card'); name = card.getAttribute('data-name'); price = parseFloat(card.getAttribute('data-price')); }
+            let existing = cart.find(item => item.name === name);
+            if (existing) { existing.quantity = (existing.quantity || existing.qty || 0) + 1; existing.qty = existing.quantity; }
+            else { cart.push({ name, price, quantity: 1, qty: 1 }); }
+            saveAndRefresh(); document.getElementById('cartDrawer').classList.add('open'); document.getElementById('cartOverlay').classList.add('open');
+        }
+        function changeQuantity(name, amount) {
+            let item = cart.find(item => item.name === name);
+            if (item) {
+                let q = (item.quantity || item.qty || 0) + amount;
+                if (q <= 0) { cart = cart.filter(i => i.name !== name); }
+                else { item.quantity = q; item.qty = q; }
+            }
+            saveAndRefresh();
+        }
+        function saveAndRefresh() { localStorage.setItem(CART_KEY, JSON.stringify(cart)); updateCartUI(); }
+        function updateCartUI() {
+            const cartCount = document.getElementById('cartCount');
+            const cartBody = document.getElementById('cartBody');
+            const cartTotal = document.getElementById('cartTotal');
+            let totalItems = 0; let totalPrice = 0;
+            if (cart.length === 0) {
+                if (cartBody) cartBody.innerHTML = `<p style="text-align: center; color: var(--text-muted); margin-top: 40px;">Your cart is empty 🍔</p>`;
+            } else {
+                if (cartBody) cartBody.innerHTML = '';
+                cart.forEach(item => {
+                    let q = item.quantity || item.qty || 0;
+                    totalItems += q;
+                    totalPrice += item.price * q;
+                    if (cartBody) {
+                        cartBody.innerHTML += `
+                            <div class="cart-item">
+                                <div class="cart-item-info">
+                                    <h4>${item.name}</h4>
+                                    <small>R${item.price.toFixed(2)} each</small>
+                                </div>
+                                <div class="cart-item-controls">
+                                    <button type="button" onclick="changeQuantity('${item.name}', -1)">-</button>
+                                    <span>${q}</span>
+                                    <button type="button" onclick="changeQuantity('${item.name}', 1)">+</button>
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+            }
+            if (cartCount) cartCount.innerText = totalItems;
+            if (cartTotal) cartTotal.innerText = `R${totalPrice.toFixed(2)}`;
+        }
+        function checkoutWhatsApp() {
+            if (cart.length === 0) { alert("Your cart is empty! Add some items first."); return; }
+            var nameEl = document.getElementById('custName');
+            var addrEl = document.getElementById('custAddress');
+            var custName = nameEl ? nameEl.value.trim() : '';
+            var custAddress = addrEl ? addrEl.value.trim() : '';
+            if(!custName){ alert("Please enter your name"); nameEl.focus(); return; }
+            if(!custAddress){ alert("Please enter your delivery address"); addrEl.focus(); return; }
+            let message = `*NEW CAMPUS BITE ORDER*%0A%0A`;
+            message += `*Name:* ${custName}%0A*Address:* ${custAddress}%0A%0A*Order Details:*%0A`;
+            let total = 0;
+            cart.forEach(item => {
+                let q = item.quantity || item.qty || 0;
+                let itemSum = item.price * q;
+                total += itemSum;
+                message += `• ${q}x ${item.name} - R${itemSum.toFixed(2)}%0A`;
+            });
+            message += `%0A*Total: R${total.toFixed(2)}*%0A%0APlease confirm my order! 🙏`;
+            let phoneNumber = "27790155149";
+            window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+        }
+    </script>
+    <script src="assistant.js"></script>
+    <script src="fake-checkout.js"></script>
 </body>
 </html>
